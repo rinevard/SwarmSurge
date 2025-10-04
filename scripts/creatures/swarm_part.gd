@@ -37,6 +37,10 @@ func _physics_process(delta: float) -> void:
 
 	position += velocity * delta
 
+func activate() -> void:
+	print(name + " is activated!")
+
+#region 聚落移动
 func _get_neighbors() -> Array[SwarmPart]:
 	var result: Array[SwarmPart] = []
 	if swarm_master == null:
@@ -94,3 +98,4 @@ func _steer_towards(desired_velocity: Vector2) -> Vector2:
 	if steer_len > MAX_FORCE:
 		steer = steer * (MAX_FORCE / steer_len)
 	return steer
+#endregion

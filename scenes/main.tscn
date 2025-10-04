@@ -8,13 +8,16 @@
 metadata/_edit_lock_ = true
 
 [node name="SwarmMaster" parent="." instance=ExtResource("1_o5qli")]
-position = Vector2(664, 488)
+position = Vector2(580, 418)
 
 [node name="EnemyMaster" parent="." instance=ExtResource("3_sugp2")]
 position = Vector2(1349, 546)
 
 [node name="SwarmPart7" parent="." instance=ExtResource("2_0wfyh")]
-position = Vector2(847, 603)
+position = Vector2(578, 579)
+
+[node name="SwarmPart9" parent="." instance=ExtResource("2_0wfyh")]
+position = Vector2(578, 579)
 
 [node name="SwarmPart8" parent="." instance=ExtResource("2_0wfyh")]
-position = Vector2(990, 642)
+position = Vector2(760, 564)

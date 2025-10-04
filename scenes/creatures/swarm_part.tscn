@@ -26,3 +26,6 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_xsps4")
 region_enabled = true
 region_rect = Rect2(166, 74, 455, 404)
+
+[node name="Power" type="Node2D" parent="." index="3"]
+metadata/_edit_lock_ = true
