@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjlv33leiso01"]
+[gd_scene load_steps=6 format=3 uid="uid://cjlv33leiso01"]
 
 [ext_resource type="PackedScene" uid="uid://b031ffqlibkfg" path="res://scenes/creatures/base_creature.tscn" id="1_rbc8r"]
+[ext_resource type="Script" uid="uid://d30uyeo4lughy" path="res://scripts/creatures/swarm_part.gd" id="2_6pfan"]
 [ext_resource type="Texture2D" uid="uid://baidxml36re64" path="res://assets/art/creatures.png" id="2_xsps4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6pfan"]
@@ -10,6 +11,7 @@ radius = 52.6118
 radius = 53.2353
 
 [node name="SwarmPart" instance=ExtResource("1_rbc8r")]
+script = ExtResource("2_6pfan")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CreatureDetector" index="0"]
 shape = SubResource("CircleShape2D_6pfan")

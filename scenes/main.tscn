@@ -5,15 +5,16 @@
 [ext_resource type="PackedScene" uid="uid://betv6hrnya64x" path="res://scenes/creatures/enemy_master.tscn" id="3_sugp2"]
 
 [node name="Main" type="Node2D"]
-
-[node name="SwarmPart" parent="." instance=ExtResource("2_0wfyh")]
-position = Vector2(1029, 344)
+metadata/_edit_lock_ = true
 
 [node name="SwarmMaster" parent="." instance=ExtResource("1_o5qli")]
 position = Vector2(664, 488)
 
-[node name="SwarmPart2" parent="." instance=ExtResource("2_0wfyh")]
-position = Vector2(1095, 320)
-
 [node name="EnemyMaster" parent="." instance=ExtResource("3_sugp2")]
-position = Vector2(1159, 324)
+position = Vector2(1349, 546)
+
+[node name="SwarmPart7" parent="." instance=ExtResource("2_0wfyh")]
+position = Vector2(847, 603)
+
+[node name="SwarmPart8" parent="." instance=ExtResource("2_0wfyh")]
+position = Vector2(990, 642)

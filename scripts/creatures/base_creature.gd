@@ -10,15 +10,6 @@ var swarm_master: BaseCreature = null
 func _ready() -> void:
 	update_group(group, swarm_master)
 
-func _physics_process(delta: float) -> void:
-	match group:
-		Global.GROUP.FRIEND:
-			$GroupLabel.text = "Friend"
-		Global.GROUP.ENEMY:
-			$GroupLabel.text = "Enemy"
-		Global.GROUP.NEUTRAL:
-			$GroupLabel.text = "Neutral"
-
 ## 非中立阵营的creature会打开detector关闭detectedarea，
 ## 中立阵营的creature会打开detectedarea关闭detector。
 func update_group(p_group: Global.GROUP, p_swarm_master: BaseCreature) -> void:
@@ -35,4 +26,18 @@ func update_group(p_group: Global.GROUP, p_swarm_master: BaseCreature) -> void:
 func _on_neutral_creature_detected(creature: BaseCreature) -> void:
 	if group == Global.GROUP.NEUTRAL:
 		return
-	creature.update_group(group, swarm_master)
+	if swarm_master:
+		# 老大有人来了喵
+		swarm_master.add_swarm_part(creature)
+	else:
+		creature.update_group(group, self)
+
+
+func tmp_update_label() -> void:
+	match group:
+		Global.GROUP.FRIEND:
+			$GroupLabel.text = "Friend"
+		Global.GROUP.ENEMY:
+			$GroupLabel.text = "Enemy"
+		Global.GROUP.NEUTRAL:
+			$GroupLabel.text = "Neutral"
