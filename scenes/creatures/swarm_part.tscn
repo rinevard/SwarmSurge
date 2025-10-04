@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjlv33leiso01"]
+
+[ext_resource type="PackedScene" uid="uid://b031ffqlibkfg" path="res://scenes/creatures/base_creature.tscn" id="1_rbc8r"]
+[ext_resource type="Texture2D" uid="uid://baidxml36re64" path="res://assets/art/creatures.png" id="2_xsps4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6pfan"]
+radius = 52.6118
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xsps4"]
+radius = 53.2353
+
+[node name="SwarmPart" instance=ExtResource("1_rbc8r")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CreatureDetector" index="0"]
+shape = SubResource("CircleShape2D_6pfan")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectedArea" index="0"]
+shape = SubResource("CircleShape2D_xsps4")
+
+[node name="Sprites" type="Node2D" parent="." index="2"]
+scale = Vector2(0.25, 0.25)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprites" index="0"]
+texture = ExtResource("2_xsps4")
+region_enabled = true
+region_rect = Rect2(166, 74, 455, 404)
