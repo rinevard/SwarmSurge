@@ -1,0 +1,120 @@
+[gd_scene load_steps=6 format=3 uid="uid://c38p3qlh1a6yt"]
+
+[ext_resource type="Script" uid="uid://b3iao4kykflbl" path="res://scripts/start_menu.gd" id="1_h61rw"]
+[ext_resource type="PackedScene" uid="uid://c3dxa4d5qober" path="res://scenes/my_button.tscn" id="1_ouf4f"]
+[ext_resource type="Texture2D" uid="uid://baidxml36re64" path="res://assets/art/creatures.png" id="2_m7x51"]
+[ext_resource type="PackedScene" uid="uid://8nfdqe4dxm7d" path="res://scenes/my_label.tscn" id="2_thu50"]
+
+[sub_resource type="Curve2D" id="Curve2D_m7x51"]
+_data = {
+"points": PackedVector2Array(58.5683, -0.263157, -58.5683, 0.263157, 1384.36, 301.668, 52.287, -35.6295, -52.287, 35.6295, 1081.19, 369.1, 1.59357, -106.86, -1.59357, 106.86, 998.61, 552.466, -37.0711, -32.6625, 37.0711, 32.6625, 1081.19, 772.507, -125.148, 0.767243, 125.148, -0.767243, 1375.67, 843.487, -48.1026, 36.9881, 48.1026, -36.9881, 1682.1, 752.395, 0, 102.753, 0, -102.753, 1776.63, 587.957, 57.2584, 41.7472, -57.2584, -41.7472, 1688.62, 392.76, 52.5131, 0.287075, -52.5131, -0.287075, 1384.36, 301.668)
+}
+point_count = 9
+
+[node name="StartMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h61rw")
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.972549, 0.913725, 0.898039, 1)
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 339.0
+offset_top = 480.0
+offset_right = 849.0
+offset_bottom = 844.0
+metadata/_edit_lock_ = true
+
+[node name="StartButton" parent="VBoxContainer" instance=ExtResource("1_ouf4f")]
+custom_minimum_size = Vector2(510, 180)
+layout_mode = 2
+text = "Start"
+
+[node name="ExitButton" parent="VBoxContainer" instance=ExtResource("1_ouf4f")]
+custom_minimum_size = Vector2(510, 180)
+layout_mode = 2
+text = "Quit"
+
+[node name="MyLabel" parent="." instance=ExtResource("2_thu50")]
+layout_mode = 0
+offset_left = 148.0
+offset_top = 171.0
+offset_right = 1215.0
+offset_bottom = 382.0
+theme_override_colors/default_color = Color(0.145098, 0.211765, 0.341176, 1)
+theme_override_font_sizes/bold_italics_font_size = 160
+theme_override_font_sizes/italics_font_size = 160
+theme_override_font_sizes/mono_font_size = 160
+theme_override_font_sizes/normal_font_size = 160
+theme_override_font_sizes/bold_font_size = 160
+text = "Swarm Surge"
+metadata/_edit_lock_ = true
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Master" type="Sprite2D" parent="Sprites"]
+position = Vector2(1374, 618)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_m7x51")
+region_enabled = true
+region_rect = Rect2(119, 886, 567, 316)
+
+[node name="Path2D" type="Path2D" parent="Sprites"]
+position = Vector2(99, 124)
+scale = Vector2(0.920279, 0.8453)
+curve = SubResource("Curve2D_m7x51")
+
+[node name="TurtlePathFollow2D" type="PathFollow2D" parent="Sprites/Path2D"]
+position = Vector2(1384.36, 301.668)
+rotation = 3.1371
+metadata/_edit_lock_ = true
+
+[node name="Turtle" type="Sprite2D" parent="Sprites/Path2D/TurtlePathFollow2D"]
+rotation = -3.05884
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_m7x51")
+region_enabled = true
+region_rect = Rect2(166, 74, 455, 404)
+metadata/_edit_lock_ = true
+
+[node name="HedgehogPathFollow2D" type="PathFollow2D" parent="Sprites/Path2D"]
+position = Vector2(1067.48, 758.679)
+rotation = 0.848663
+progress = 745.839
+
+[node name="Hedgehog" type="Sprite2D" parent="Sprites/Path2D/HedgehogPathFollow2D"]
+rotation = -3.05884
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_m7x51")
+region_enabled = true
+region_rect = Rect2(1114, 805, 526, 374)
+
+[node name="ScorpionPathFollow2D" type="PathFollow2D" parent="Sprites/Path2D"]
+position = Vector2(1674.32, 758.012)
+rotation = -0.599031
+progress = 1386.5
+
+[node name="Scorpion" type="Sprite2D" parent="Sprites/Path2D/ScorpionPathFollow2D"]
+position = Vector2(-41.502, 52.7501)
+rotation = -3.05884
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_m7x51")
+region_enabled = true
+region_rect = Rect2(1170, 68, 615, 461)
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

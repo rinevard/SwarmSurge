@@ -1,12 +1,15 @@
 extends Node2D
 
 @onready var pause_menu: PauseMenu = $CanvasLayer/PauseMenu
-@onready var game: Game = $Game
+@onready var start_menu: StartMenu = $CanvasLayer/StartMenu
 @onready var transition_mask: ColorRect = $CanvasLayer/TransitionMask
+
+var game: Game = null
 
 const GAME = preload("res://scenes/game.tscn")
 
 func _ready() -> void:
+	start_menu.show()
 	pause_menu.hide()
 
 func _input(event: InputEvent) -> void:
@@ -54,3 +57,19 @@ func _transition_fade_out() -> void:
 	tween.tween_property(transition_mask, "material:shader_parameter/progress", 0.0, transition_duration)
 	await tween.finished
 #endregion
+
+func _on_start_menu_exit_clicked() -> void:
+	await _transition_fade_in()
+	get_tree().quit()
+
+func _on_start_menu_start_clicked() -> void:
+	await _transition_fade_in()
+	start_menu.hide()
+
+	if game and is_instance_valid(game):
+		game.call_deferred("queue_free")
+	game = GAME.instantiate()
+	Global.reset_game_data(game)
+	call_deferred("add_child", game)
+	Global.game_paused = false
+	await _transition_fade_out()
