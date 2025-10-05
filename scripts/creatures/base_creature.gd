@@ -111,3 +111,6 @@ func _on_opponent_creature_exited(creature: BaseCreature) -> void:
 			if swarm_master:
 				# 老大敌人走了喵
 				swarm_master.remove_enemy(creature)
+
+func on_bullet_hit(bullet: ScorpBullet) -> void:
+	print("bullet hit me! I am " + name + "!")

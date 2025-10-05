@@ -9,7 +9,30 @@ static func new_bullet(p_global_position: Vector2, p_velocity: Vector2, p_group:
 	bullet.global_position = p_global_position
 	bullet.velocity = p_velocity
 	bullet.group = p_group
+	
+	# 2: neutral, 5: friend, 6: enemy
+	match p_group:
+		Global.GROUP.NEUTRAL:
+			bullet.call_deferred("set_collision_mask_value", 2, false)
+			bullet.call_deferred("set_collision_mask_value", 5, false)
+			bullet.call_deferred("set_collision_mask_value", 6, false)
+		Global.GROUP.FRIEND:
+			bullet.call_deferred("set_collision_mask_value", 2, false)
+			bullet.call_deferred("set_collision_mask_value", 5, false)
+			bullet.call_deferred("set_collision_mask_value", 6, true)
+		Global.GROUP.ENEMY:
+			bullet.call_deferred("set_collision_mask_value", 2, false)
+			bullet.call_deferred("set_collision_mask_value", 5, true)
+			bullet.call_deferred("set_collision_mask_value", 6, false)
+		
 	return bullet
 
 func _physics_process(delta: float) -> void:
 	position += velocity * delta
+
+func _on_area_entered(area: Area2D) -> void:
+	var creature = area.get_parent()
+	if creature is BaseCreature:
+		if (creature.group == Global.GROUP.ENEMY and group == Global.GROUP.FRIEND) \
+			or (creature.group == Global.GROUP.FRIEND and group == Global.GROUP.ENEMY):
+			creature.on_bullet_hit(self)
