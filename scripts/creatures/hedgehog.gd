@@ -3,6 +3,10 @@ class_name Hedgehog
 
 var bullet_speed: float = 350.0
 
+func _ready() -> void:
+	super()
+	$AnimationPlayer.play("normal")
+
 ## override, 索敌发射子弹
 func activate(enemies: Array[BaseCreature]) -> void:
 	var nearest_enemy: BaseCreature = null

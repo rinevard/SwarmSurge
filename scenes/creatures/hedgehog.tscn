@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3jmk4m075u6k"]
+[gd_scene load_steps=10 format=3 uid="uid://c3jmk4m075u6k"]
 
 [ext_resource type="PackedScene" uid="uid://cjlv33leiso01" path="res://scenes/creatures/swarm_part.tscn" id="1_aotba"]
 [ext_resource type="Script" uid="uid://cd6mcji1o4ntn" path="res://scripts/creatures/hedgehog.gd" id="2_kexk5"]
-[ext_resource type="Texture2D" uid="uid://baidxml36re64" path="res://assets/art/creatures.png" id="3_s71yl"]
+[ext_resource type="Texture2D" uid="uid://butjew1twah8" path="res://assets/art/final_creatures.png" id="4_10ndf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s71yl"]
 radius = 120.0
@@ -12,6 +12,116 @@ radius = 480.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ja52c"]
 radius = 46.2709
+
+[sub_resource type="Animation" id="Animation_s71yl"]
+resource_name = "normal"
+length = 0.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Body:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 0.8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Eyes:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -13.8889), Vector2(0, -8.33334)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/Stabs:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-8, -77.2223), Vector2(-8, -63.3333)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprites/Stabs:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 0.9)]
+}
+
+[sub_resource type="Animation" id="Animation_10ndf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Body:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Eyes:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -8.33333)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/Stabs:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, -63.3333)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprites/Stabs:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_10ndf"]
+_data = {
+&"RESET": SubResource("Animation_10ndf"),
+&"normal": SubResource("Animation_s71yl")
+}
 
 [node name="Hedgehog" instance=ExtResource("1_aotba")]
 script = ExtResource("2_kexk5")
@@ -26,9 +136,26 @@ shape = SubResource("CircleShape2D_10ndf")
 shape = SubResource("CircleShape2D_ja52c")
 
 [node name="Sprites" type="Node2D" parent="." index="3"]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.36, 0.36)
 
-[node name="Sprite2D" type="Sprite2D" parent="Sprites" index="0"]
-texture = ExtResource("3_s71yl")
+[node name="Body" type="Sprite2D" parent="Sprites" index="0"]
+texture = ExtResource("4_10ndf")
 region_enabled = true
-region_rect = Rect2(1114, 805, 526, 374)
+region_rect = Rect2(1160, 1875, 216, 163)
+
+[node name="Stabs" type="Sprite2D" parent="Sprites" index="1"]
+position = Vector2(-8, -63.3333)
+texture = ExtResource("4_10ndf")
+region_enabled = true
+region_rect = Rect2(1074, 1588, 379, 218)
+
+[node name="Eyes" type="Sprite2D" parent="Sprites" index="2"]
+position = Vector2(0, -8.33333)
+texture = ExtResource("4_10ndf")
+region_enabled = true
+region_rect = Rect2(100, 1277, 113, 47)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+libraries = {
+&"": SubResource("AnimationLibrary_10ndf")
+}
