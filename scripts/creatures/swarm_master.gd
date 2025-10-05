@@ -52,6 +52,10 @@ func _physics_process(delta: float) -> void:
 	
 	velocity = direction.normalized() * speed
 	position += velocity * delta
+	
+	# 限制位置范围
+	global_position.x = clamp(global_position.x, -2350, 4750)
+	global_position.y = clamp(global_position.y, -1200, 2900)
 	#endregion
 
 func _update_music() -> void:

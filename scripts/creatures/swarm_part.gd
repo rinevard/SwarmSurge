@@ -60,6 +60,10 @@ func _physics_process(delta: float) -> void:
 		velocity = velocity.normalized() * MIN_SPEED
 
 	position += velocity * delta
+	
+	# 限制位置范围
+	global_position.x = clamp(global_position.x, -2350, 4750)
+	global_position.y = clamp(global_position.y, -1200, 2900)
 
 func activate(_enemies: Array[BaseCreature]) -> void:
 	print(name + " is activated!")
