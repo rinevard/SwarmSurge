@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxgtvurlejghu"]
+[gd_scene load_steps=10 format=3 uid="uid://cxgtvurlejghu"]
 
 [ext_resource type="PackedScene" uid="uid://b031ffqlibkfg" path="res://scenes/creatures/base_creature.tscn" id="1_c75lb"]
 [ext_resource type="Script" uid="uid://df85i8ut1bam5" path="res://scripts/creatures/swarm_master.gd" id="1_f4anc"]
-[ext_resource type="Texture2D" uid="uid://baidxml36re64" path="res://assets/art/creatures.png" id="2_yafsa"]
+[ext_resource type="Texture2D" uid="uid://butjew1twah8" path="res://assets/art/final_creatures.png" id="4_ydyxm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l84sl"]
 radius = 120.0
@@ -13,6 +13,68 @@ radius = 480.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l84sl"]
 radius = 26.0
 height = 130.0
+
+[sub_resource type="Animation" id="Animation_l84sl"]
+resource_name = "normal"
+length = 0.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Body:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.05, 0.8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Eyes:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -28), Vector2(0, -22)]
+}
+
+[sub_resource type="Animation" id="Animation_ydyxm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Body:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Eyes:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -26)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ydyxm"]
+_data = {
+&"RESET": SubResource("Animation_ydyxm"),
+&"normal": SubResource("Animation_l84sl")
+}
 
 [node name="SwarmMaster" instance=ExtResource("1_c75lb")]
 z_index = 1
@@ -29,9 +91,20 @@ rotation = 1.57079
 shape = SubResource("CapsuleShape2D_l84sl")
 
 [node name="Sprites" type="Node2D" parent="." index="3"]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.5, 0.5)
 
-[node name="Sprite2D" type="Sprite2D" parent="Sprites" index="0"]
-texture = ExtResource("2_yafsa")
+[node name="Body" type="Sprite2D" parent="Sprites" index="0"]
+texture = ExtResource("4_ydyxm")
 region_enabled = true
-region_rect = Rect2(119, 886, 567, 316)
+region_rect = Rect2(1079, 1162, 293, 194)
+
+[node name="Eyes" type="Sprite2D" parent="Sprites" index="1"]
+position = Vector2(0, -26)
+texture = ExtResource("4_ydyxm")
+region_enabled = true
+region_rect = Rect2(100, 1277, 113, 47)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+libraries = {
+&"": SubResource("AnimationLibrary_ydyxm")
+}

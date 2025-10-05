@@ -1,11 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://b6siqp2yif448"]
 
-[ext_resource type="Texture2D" uid="uid://bsddq2gupqcac" path="res://assets/art/turtle_shield.png" id="1_cahqh"]
 [ext_resource type="Script" uid="uid://bbtfkmhaj0ceg" path="res://scripts/turtle_shield.gd" id="1_ls861"]
+[ext_resource type="Texture2D" uid="uid://butjew1twah8" path="res://assets/art/final_creatures.png" id="2_ls861"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ls861"]
 radius = 47.0
-height = 194.0
+height = 206.0
 
 [node name="TurtleShield" type="Area2D"]
 collision_layer = 64
@@ -17,7 +17,9 @@ script = ExtResource("1_ls861")
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprites"]
-texture = ExtResource("1_cahqh")
+texture = ExtResource("2_ls861")
+region_enabled = true
+region_rect = Rect2(2027, 360, 437, 226)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = -1.57079

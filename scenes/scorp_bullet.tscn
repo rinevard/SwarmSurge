@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cxio383onvxyi"]
 
 [ext_resource type="Script" uid="uid://ci3ehhfk3mfhg" path="res://scripts/scorp_bullet.gd" id="1_thji4"]
-[ext_resource type="Texture2D" uid="uid://boddl7w4i10ox" path="res://assets/art/scorp_bullet.png" id="2_cptwm"]
+[ext_resource type="Texture2D" uid="uid://butjew1twah8" path="res://assets/art/final_creatures.png" id="2_thji4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y25gk"]
 radius = 11.0
@@ -16,11 +16,13 @@ monitorable = false
 script = ExtResource("1_thji4")
 
 [node name="Sprites" type="Node2D" parent="."]
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.36, 0.36)
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprites"]
 position = Vector2(0, -5)
-texture = ExtResource("2_cptwm")
+texture = ExtResource("2_thji4")
+region_enabled = true
+region_rect = Rect2(651, 863, 105, 85)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-6, 0)

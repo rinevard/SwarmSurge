@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://b3iao4kykflbl" path="res://scripts/start_menu.gd" id="1_h61rw"]
 [ext_resource type="PackedScene" uid="uid://c3dxa4d5qober" path="res://scenes/my_button.tscn" id="1_ouf4f"]
-[ext_resource type="Texture2D" uid="uid://baidxml36re64" path="res://assets/art/creatures.png" id="2_m7x51"]
 [ext_resource type="PackedScene" uid="uid://8nfdqe4dxm7d" path="res://scenes/my_label.tscn" id="2_thu50"]
+[ext_resource type="Texture2D" uid="uid://butjew1twah8" path="res://assets/art/final_creatures.png" id="5_fcv5n"]
 
 [sub_resource type="Curve2D" id="Curve2D_m7x51"]
 _data = {
@@ -68,10 +68,9 @@ metadata/_edit_lock_ = true
 
 [node name="Master" type="Sprite2D" parent="Sprites"]
 position = Vector2(1374, 618)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("2_m7x51")
+texture = ExtResource("5_fcv5n")
 region_enabled = true
-region_rect = Rect2(119, 886, 567, 316)
+region_rect = Rect2(1096, 327, 293, 195)
 
 [node name="Path2D" type="Path2D" parent="Sprites"]
 position = Vector2(99, 124)
@@ -85,10 +84,10 @@ metadata/_edit_lock_ = true
 
 [node name="Turtle" type="Sprite2D" parent="Sprites/Path2D/TurtlePathFollow2D"]
 rotation = -3.05884
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_m7x51")
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("5_fcv5n")
 region_enabled = true
-region_rect = Rect2(166, 74, 455, 404)
+region_rect = Rect2(1653, 788, 280, 249)
 metadata/_edit_lock_ = true
 
 [node name="HedgehogPathFollow2D" type="PathFollow2D" parent="Sprites/Path2D"]
@@ -98,10 +97,10 @@ progress = 745.839
 
 [node name="Hedgehog" type="Sprite2D" parent="Sprites/Path2D/HedgehogPathFollow2D"]
 rotation = -3.05884
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_m7x51")
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("5_fcv5n")
 region_enabled = true
-region_rect = Rect2(1114, 805, 526, 374)
+region_rect = Rect2(1028, 752, 379, 269)
 
 [node name="ScorpionPathFollow2D" type="PathFollow2D" parent="Sprites/Path2D"]
 position = Vector2(1674.32, 758.014)
@@ -111,10 +110,10 @@ progress = 1386.5
 [node name="Scorpion" type="Sprite2D" parent="Sprites/Path2D/ScorpionPathFollow2D"]
 position = Vector2(-41.502, 52.7501)
 rotation = -3.05884
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_m7x51")
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("5_fcv5n")
 region_enabled = true
-region_rect = Rect2(1170, 68, 615, 461)
+region_rect = Rect2(578, 213, 380, 313)
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

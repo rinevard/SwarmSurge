@@ -16,6 +16,7 @@ func _ready() -> void:
 	MusicPlayer.play_master()
 	update_group(Global.GROUP.FRIEND, self)
 	call_deferred("_init_global")
+	$AnimationPlayer.play("normal")
 
 func _init_global() -> void:
 	Global.player_master = self
