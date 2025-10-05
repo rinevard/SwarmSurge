@@ -11,7 +11,7 @@ const TURTLE = preload("res://scenes/creatures/turtle.tscn")
 # 生成参数常量
 var check_interval: float = 10.0 # 每 10 秒检查一次敌人聚落数量, 太少就生成新聚落, 友方聚落越大, 检查间隔越大
 const MIN_CHECK_INTERVAL: float = 10.0
-const MAX_CHECK_INTERVAL: float = 20.0
+const MAX_CHECK_INTERVAL: float = 15.0
 const MAX_ENEMY_COLONIES: int = 2  # 最大敌方聚落数量
 const BASE_SPAWN_DISTANCE: float = 1500.0  # 基础生成距离
 const DISTANCE_PER_SWARM_SIZE: float = 70.0  # 每个友方生物增加的距离
@@ -79,6 +79,9 @@ func _spawn_enemy_colony() -> void:
 	var enemy_master: EnemyMaster = ENEMY_MASTER.instantiate()
 	enemy_master.global_position = center
 	creatures.add_child(enemy_master)
+	# 限制位置范围
+	enemy_master.global_position.x = clamp(enemy_master.global_position.x, -2350, 4750)
+	enemy_master.global_position.y = clamp(enemy_master.global_position.y, -1200, 2900)
 
 	# 敌方副兽环绕分布
 	for i in range(num_parts):
@@ -89,6 +92,9 @@ func _spawn_enemy_colony() -> void:
 		var pos: Vector2 = center + Vector2(cos(a), sin(a)) * r
 		creatures.add_child(part)
 		# 无需手动调用 add_swarm_part, 敌方主兽会在足够接近时自动添加副兽
+		# 限制位置范围
+		pos.x = clamp(pos.x, -2350, 4750)
+		pos.y = clamp(pos.y, -1200, 2900)
 		part.global_position = pos
 
 func _choose_enemy_scene_by_weight() -> PackedScene:
