@@ -92,8 +92,8 @@ region_rect = Rect2(166, 74, 455, 404)
 metadata/_edit_lock_ = true
 
 [node name="HedgehogPathFollow2D" type="PathFollow2D" parent="Sprites/Path2D"]
-position = Vector2(1067.48, 758.679)
-rotation = 0.848663
+position = Vector2(1067.48, 758.681)
+rotation = 0.848668
 progress = 745.839
 
 [node name="Hedgehog" type="Sprite2D" parent="Sprites/Path2D/HedgehogPathFollow2D"]
@@ -104,8 +104,8 @@ region_enabled = true
 region_rect = Rect2(1114, 805, 526, 374)
 
 [node name="ScorpionPathFollow2D" type="PathFollow2D" parent="Sprites/Path2D"]
-position = Vector2(1674.32, 758.012)
-rotation = -0.599031
+position = Vector2(1674.32, 758.014)
+rotation = -0.599013
 progress = 1386.5
 
 [node name="Scorpion" type="Sprite2D" parent="Sprites/Path2D/ScorpionPathFollow2D"]

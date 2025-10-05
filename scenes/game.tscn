@@ -29,15 +29,52 @@ sources/0 = SubResource("TileSetAtlasSource_kvpfn")
 script = ExtResource("1_iywne")
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("follow_target")]
+limit_left = -2550
+limit_top = -1400
+limit_right = 4950
+limit_bottom = 3100
+limit_smoothed = true
 script = ExtResource("2_0tnpc")
 follow_target = NodePath("../Creatures/SwarmMaster")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -1408.0
-offset_top = -1094.0
-offset_right = 3432.0
-offset_bottom = 2662.0
+[node name="Background" type="Node2D" parent="."]
+
+[node name="GreenBg" type="ColorRect" parent="Background"]
+offset_left = -2550.0
+offset_top = -1400.0
+offset_right = 4950.0
+offset_bottom = 3100.0
 color = Color(0.6375, 0.75, 0.665625, 1)
+
+[node name="BgWalls" type="Node2D" parent="Background"]
+
+[node name="UpBgWall" type="ColorRect" parent="Background/BgWalls"]
+offset_left = -3436.0
+offset_top = -1800.0
+offset_right = 5811.0
+offset_bottom = -1300.0
+color = Color(0.145098, 0.211765, 0.341176, 1)
+
+[node name="DownBgWall" type="ColorRect" parent="Background/BgWalls"]
+offset_left = -3337.0
+offset_top = 3000.0
+offset_right = 5910.0
+offset_bottom = 3500.0
+color = Color(0.145098, 0.211765, 0.341176, 1)
+
+[node name="RightBgWall" type="ColorRect" parent="Background/BgWalls"]
+offset_left = 4850.0
+offset_top = -2255.0
+offset_right = 5350.0
+offset_bottom = 3793.0
+color = Color(0.145098, 0.211765, 0.341176, 1)
+
+[node name="LeftBgWall" type="ColorRect" parent="Background/BgWalls"]
+offset_left = -2950.0
+offset_top = -2134.0
+offset_right = -2450.0
+offset_bottom = 3914.0
+color = Color(0.145098, 0.211765, 0.341176, 1)
 
 [node name="Creatures" type="Node2D" parent="."]
 
@@ -54,7 +91,7 @@ position = Vector2(1451, 688)
 position = Vector2(1509, 641)
 
 [node name="SwarmMaster" parent="Creatures" instance=ExtResource("1_yqjtg")]
-position = Vector2(703, 518)
+position = Vector2(140, 689)
 
 [node name="Hedgehog" parent="Creatures" instance=ExtResource("6_u5sy4")]
 
