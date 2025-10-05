@@ -26,7 +26,7 @@ func _init_global() -> void:
 	Global.enemy_masters.append(self)
 
 func _physics_process(delta: float) -> void:
-	if Global.game_paused or (not Global.first_creature_picked):
+	if Global.game_paused or (not Global.tutorial_ended):
 		return
 	_update_swarm_parts_and_enemies()
 

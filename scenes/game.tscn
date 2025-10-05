@@ -94,19 +94,19 @@ text = "Ludum Dare 58"
 
 [node name="SwarmMaster" parent="Creatures" instance=ExtResource("1_yqjtg")]
 z_index = 0
-position = Vector2(342, 659)
+position = Vector2(250, 678)
 
 [node name="Scorpion" parent="Creatures" instance=ExtResource("2_lnu2h")]
-position = Vector2(1154, 568)
+position = Vector2(1070, 632)
 
 [node name="Turtle" parent="Creatures" instance=ExtResource("3_lnu2h")]
-position = Vector2(-604, 1458)
+position = Vector2(1967, 608)
 
 [node name="EnemyMaster" parent="Creatures" instance=ExtResource("5_p57ef")]
-position = Vector2(2444, 527)
+position = Vector2(2101, 609)
 
 [node name="Hedgehog" parent="Creatures" instance=ExtResource("6_u5sy4")]
-position = Vector2(-632, -245)
+position = Vector2(-1098, 1955)
 
 [node name="EnemyHandler" type="Node2D" parent="."]
 script = ExtResource("7_gee14")

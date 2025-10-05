@@ -44,6 +44,8 @@ func _physics_process(delta: float) -> void:
 		keep_distance_force = (master_next_global_position - global_position) * WEIGHT_KEEP_DISTANCE
 		center_force = (swarm_master.global_position - global_position) * WEIGHT_CENTER_FORCE
 		if swarm_master is EnemyMaster:
+			if not Global.tutorial_ended:
+				return
 			if Global.player_master:
 				var player_master_distance: float = global_position.distance_to(Global.player_master.global_position)
 				if player_master_distance < MIN_PLAYER_MASTER_DISTANCE:

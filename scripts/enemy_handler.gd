@@ -9,7 +9,9 @@ const SCORPION = preload("res://scenes/creatures/scorpion.tscn")
 const TURTLE = preload("res://scenes/creatures/turtle.tscn")
 
 # 生成参数常量
-const CHECK_INTERVAL: float = 20.0  # 每 20 秒检查一次敌人聚落数量, 太少就生成新聚落
+var check_interval: float = 10.0 # 每 10 秒检查一次敌人聚落数量, 太少就生成新聚落, 友方聚落越大, 检查间隔越大
+const MIN_CHECK_INTERVAL: float = 10.0
+const MAX_CHECK_INTERVAL: float = 20.0
 const MAX_ENEMY_COLONIES: int = 2  # 最大敌方聚落数量
 const BASE_SPAWN_DISTANCE: float = 1500.0  # 基础生成距离
 const DISTANCE_PER_SWARM_SIZE: float = 70.0  # 每个友方生物增加的距离
@@ -38,7 +40,7 @@ func _physics_process(delta: float) -> void:
 		return
 
 	_check_timer += delta
-	if _check_timer >= CHECK_INTERVAL:
+	if _check_timer >= check_interval:
 		print("check")
 		_check_timer = 0.0
 		var count := _count_enemy_masters()
@@ -58,6 +60,8 @@ func _spawn_enemy_colony() -> void:
 	if swarm_master and is_instance_valid(swarm_master):
 		friend_swarm_size = swarm_master.swarm_parts.keys().size()
 
+	check_interval = clamp(MIN_CHECK_INTERVAL + friend_swarm_size, MIN_CHECK_INTERVAL, MAX_CHECK_INTERVAL)
+	
 	var num_parts: int = int(round(float(friend_swarm_size) * randf_range(ENEMY_SIZE_MIN_RATIO, ENEMY_SIZE_MAX_RATIO)))
 	num_parts = 1 if num_parts <= 1 else num_parts
 	var distance_from_base: float = BASE_SPAWN_DISTANCE + float(friend_swarm_size) * DISTANCE_PER_SWARM_SIZE
