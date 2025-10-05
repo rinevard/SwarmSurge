@@ -7,9 +7,9 @@ var neighbor_enemies: Dictionary[BaseCreature, int] = {} # int 表示计数次�
 var velocity: Vector2 = Vector2.ZERO
 var time_to_last_activation: float = 0.0
 
-const ACTIVATION_INTERVAL: float = 3.0
+const ACTIVATION_INTERVAL: float = 1.4
 const ACTIVATION_STEP: float = 150.0
-const ACTIVATION_BATCH_INTERVAL: float = 0.3
+const ACTIVATION_BATCH_INTERVAL: float = 0.2
 
 func _ready() -> void:
 	update_group(Global.GROUP.FRIEND, self)

@@ -32,3 +32,6 @@ shape = SubResource("CircleShape2D_wqdtd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GroupDetectedArea" index="0"]
 shape = SubResource("CircleShape2D_psu7v")
+
+[node name="ShieldPosMarker" type="Marker2D" parent="." index="5"]
+position = Vector2(1, -115)
