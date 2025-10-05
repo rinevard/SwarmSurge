@@ -33,3 +33,6 @@ text = "123"
 [connection signal="area_entered" from="NeutralCreatureDetector" to="NeutralCreatureDetector" method="_on_area_entered"]
 [connection signal="neutral_creature_detected" from="NeutralCreatureDetector" to="." method="_on_neutral_creature_detected"]
 [connection signal="area_entered" from="OpponentDetector" to="OpponentDetector" method="_on_area_entered"]
+[connection signal="area_exited" from="OpponentDetector" to="OpponentDetector" method="_on_area_exited"]
+[connection signal="opponent_creature_detected" from="OpponentDetector" to="." method="_on_opponent_creature_detected"]
+[connection signal="opponent_creature_exited" from="OpponentDetector" to="." method="_on_opponent_creature_exited"]

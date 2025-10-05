@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1r25yahmaosa"]
+[gd_scene load_steps=7 format=3 uid="uid://c1r25yahmaosa"]
 
+[ext_resource type="Script" uid="uid://q3i5mc3m878" path="res://scripts/game.gd" id="1_iywne"]
 [ext_resource type="PackedScene" uid="uid://cxgtvurlejghu" path="res://scenes/creatures/swarm_master.tscn" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://ditlm5gtv4akf" path="res://scenes/creatures/scorpion.tscn" id="2_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://cml547fqhdb8g" path="res://scenes/creatures/turtle.tscn" id="3_lnu2h"]
 [ext_resource type="Script" uid="uid://ba353gqvka8" path="res://scripts/bullet_handler.gd" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://betv6hrnya64x" path="res://scenes/creatures/enemy_master.tscn" id="5_p57ef"]
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_iywne")
 
 [node name="Creatures" type="Node2D" parent="."]
 
@@ -20,6 +23,9 @@ position = Vector2(723, 674)
 
 [node name="Scorpion2" parent="Creatures" instance=ExtResource("2_lnu2h")]
 position = Vector2(793, 255)
+
+[node name="EnemyMaster" parent="Creatures" instance=ExtResource("5_p57ef")]
+position = Vector2(1384, 571)
 
 [node name="BulletHandler" type="Node2D" parent="."]
 script = ExtResource("4_lbhrr")

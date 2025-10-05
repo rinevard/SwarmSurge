@@ -3,6 +3,7 @@ class_name SwarmMaster
 
 var speed: float = 300.0
 var swarm_parts: Array[BaseCreature] = []
+var neighbor_enemies: Dictionary[BaseCreature, int] = {} # int 表示计数次数
 var velocity: Vector2 = Vector2.ZERO
 var time_to_last_activation: float = 0.0
 
@@ -16,11 +17,14 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	tmp_update_label()
 
+	#region 激活
 	time_to_last_activation += delta
 	if time_to_last_activation >= ACTIVATION_INTERVAL:
 		_activate_swarm()
 		time_to_last_activation = 0.0
+	#endregion
 
+	#region 移动
 	var direction = Vector2.ZERO
 	
 	if Input.is_action_pressed("left"):
@@ -34,9 +38,10 @@ func _physics_process(delta: float) -> void:
 	
 	velocity = direction.normalized() * speed
 	position += velocity * delta
+	#endregion
 
 func _activate_swarm() -> void:
-	_activate()
+	_activate_self()
 	# 记录当前激活时刻的副兽数组
 	var parts_snapshot: Array[BaseCreature] = swarm_parts.duplicate()
 	if parts_snapshot.is_empty():
@@ -61,7 +66,7 @@ func _activate_swarm() -> void:
 
 	# 基于最大距离计算需要的分组数量（[0, step), [step, 2*step) ... 最后一组覆盖到最大距离）
 	var num_groups: int = int(floor(max_distance / step)) + 1
-	var activation_groups: Array[Array] = []
+	var activation_groups: Array[Array] = [] # Array[Array[SwarmPart]]
 	activation_groups.resize(num_groups)
 	for i in range(num_groups):
 		activation_groups[i] = []
@@ -80,11 +85,10 @@ func _activate_swarm() -> void:
 			continue
 		for part in batch:
 			if part and is_instance_valid(part):
-				part.activate()
+				part.activate(neighbor_enemies.keys())
 		await get_tree().create_timer(ACTIVATION_BATCH_INTERVAL).timeout
 	
-
-func _activate() -> void:
+func _activate_self() -> void:
 	pass
 
 func add_swarm_part(swarm_part: BaseCreature) -> void:
@@ -94,3 +98,16 @@ func add_swarm_part(swarm_part: BaseCreature) -> void:
 func remove_swarm_part(swarm_part: BaseCreature) -> void:
 	swarm_parts.erase(swarm_part)
 	swarm_part.update_group(Global.GROUP.NEUTRAL, null)
+
+func add_enemy(creature: BaseCreature) -> void:
+	if neighbor_enemies.has(creature):
+		neighbor_enemies[creature] += 1
+	else:
+		neighbor_enemies[creature] = 1
+
+func remove_enemy(creature: BaseCreature) -> void:
+	if not neighbor_enemies.has(creature):
+		return
+	neighbor_enemies[creature] -= 1
+	if neighbor_enemies[creature] <= 0:
+		neighbor_enemies.erase(creature)

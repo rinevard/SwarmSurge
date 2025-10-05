@@ -20,30 +20,20 @@ func update_group(p_group: Global.GROUP, p_swarm_master: BaseCreature) -> void:
 		# 中立阵营不检测
 		Global.GROUP.NEUTRAL:
 			neutral_creature_detector.set_deferred("monitoring", false)
-			_update_opponent_detector_by_group(group)
-			_update_detected_area_by_group(group)
+			_update_opponent_detector_by_group()
+			_update_detected_area_by_group()
 		Global.GROUP.FRIEND:
 			neutral_creature_detector.set_deferred("monitoring", true)
-			_update_opponent_detector_by_group(group)
-			_update_detected_area_by_group(group)
+			_update_opponent_detector_by_group()
+			_update_detected_area_by_group()
 		Global.GROUP.ENEMY:
 			neutral_creature_detector.set_deferred("monitoring", true)
-			_update_opponent_detector_by_group(group)
-			_update_detected_area_by_group(group)
+			_update_opponent_detector_by_group()
+			_update_detected_area_by_group()
 
-## 把中立阵营的 creature 加入自己的聚落中
-func _on_neutral_creature_detected(creature: BaseCreature) -> void:
-	if group == Global.GROUP.NEUTRAL:
-		return
-	if swarm_master:
-		# 老大有人来了喵
-		swarm_master.add_swarm_part(creature)
-	else:
-		creature.update_group(group, self)
-
-func _update_opponent_detector_by_group(p_group: Global.GROUP) -> void:
+func _update_opponent_detector_by_group() -> void:
 	# 2: neutral, 5: friend, 6: enemy
-	match p_group:
+	match group:
 		Global.GROUP.NEUTRAL:
 			# 中立没有敌人
 			opponent_detector.set_deferred("monitoring", false)
@@ -63,7 +53,7 @@ func _update_opponent_detector_by_group(p_group: Global.GROUP) -> void:
 			opponent_detector.call_deferred("set_collision_mask_value", 5, true)
 			opponent_detector.call_deferred("set_collision_mask_value", 6, false)
 
-func _update_detected_area_by_group(p_group: Global.GROUP) -> void:
+func _update_detected_area_by_group() -> void:
 	# 2: neutral, 5: friend, 6: enemy
 	match group:
 		Global.GROUP.NEUTRAL:
@@ -94,3 +84,30 @@ func _on_bullet_detected(bullet: ScorpBullet) -> void:
 	if (bullet.group == Global.GROUP.ENEMY and group == Global.GROUP.FRIEND) \
 		or (bullet.group == Global.GROUP.FRIEND and group == Global.GROUP.ENEMY):
 		print("bullet hit me! I am " + name + "!")
+
+## 把中立阵营的 creature 加入自己的聚落中
+func _on_neutral_creature_detected(creature: BaseCreature) -> void:
+	if group == Global.GROUP.NEUTRAL:
+		return
+	if swarm_master:
+		# 老大有人来了喵
+		swarm_master.add_swarm_part(creature)
+	else:
+		creature.update_group(group, self)
+
+func _on_opponent_creature_detected(creature: BaseCreature) -> void:
+	if group == Global.GROUP.NEUTRAL:
+		return
+	# 只加入敌对势力
+	if (creature.group == Global.GROUP.ENEMY and group == Global.GROUP.FRIEND) \
+		or (creature.group == Global.GROUP.FRIEND and group == Global.GROUP.ENEMY):
+			if swarm_master:
+				# 老大有敌人喵
+				swarm_master.add_enemy(creature)
+
+func _on_opponent_creature_exited(creature: BaseCreature) -> void:
+	if (creature.group == Global.GROUP.ENEMY and group == Global.GROUP.FRIEND) \
+		or (creature.group == Global.GROUP.FRIEND and group == Global.GROUP.ENEMY):
+			if swarm_master:
+				# 老大敌人走了喵
+				swarm_master.remove_enemy(creature)

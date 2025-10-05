@@ -2,5 +2,5 @@ extends SwarmPart
 class_name Turtle
 
 ## override
-func activate() -> void:
+func activate(enemies: Array[BaseCreature]) -> void:
 	print("turtle activated!")
