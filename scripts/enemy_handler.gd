@@ -9,12 +9,12 @@ const SCORPION = preload("res://scenes/creatures/scorpion.tscn")
 const TURTLE = preload("res://scenes/creatures/turtle.tscn")
 
 # 生成参数常量
-const CHECK_INTERVAL: float = 5.0  # 每 10 秒检查一次敌人聚落数量, 太少就生成新聚落
-const MAX_ENEMY_COLONIES: int = 4  # 最大敌方聚落数量
+const CHECK_INTERVAL: float = 20.0  # 每 20 秒检查一次敌人聚落数量, 太少就生成新聚落
+const MAX_ENEMY_COLONIES: int = 2  # 最大敌方聚落数量
 const BASE_SPAWN_DISTANCE: float = 1500.0  # 基础生成距离
 const DISTANCE_PER_SWARM_SIZE: float = 70.0  # 每个友方生物增加的距离
-const ENEMY_SIZE_MIN_RATIO: float = 0.5  # 敌方聚落大小相对当前我方聚落大小的最小比例
-const ENEMY_SIZE_MAX_RATIO: float = 1.0  # 同上, 不过是最大比例
+const ENEMY_SIZE_MIN_RATIO: float = 0.4  # 敌方聚落大小相对当前我方聚落大小的最小比例
+const ENEMY_SIZE_MAX_RATIO: float = 0.7  # 同上, 不过是最大比例
 const PART_MIN_DISTANCE: float = 20.0  # 敌方副兽与master最小距离
 const PART_MAX_DISTANCE: float = 100.0  # 同上, 不过是最大距离
 

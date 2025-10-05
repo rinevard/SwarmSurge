@@ -1,7 +1,7 @@
 extends SwarmPart
 class_name Hedgehog
 
-var bullet_speed: float = 500.0
+var bullet_speed: float = 350.0
 
 ## override, 索敌发射子弹
 func activate(enemies: Array[BaseCreature]) -> void:

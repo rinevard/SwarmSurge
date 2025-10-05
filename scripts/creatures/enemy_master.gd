@@ -35,8 +35,8 @@ func _physics_process(delta: float) -> void:
 	#endregion
 
 	#region 移动
-	var player_master: SwarmMaster = Global.player_master
-	if player_master:
+	var player_master = Global.player_master
+	if player_master and player_master is SwarmMaster:
 		var to_player: Vector2 = player_master.global_position - global_position
 		if to_player.length() > DESIRE_DISTANCE_TO_PLAYER_MAX:
 			velocity = to_player.normalized() * MAX_SPEED

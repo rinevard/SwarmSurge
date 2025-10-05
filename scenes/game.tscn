@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://c1r25yahmaosa"]
+[gd_scene load_steps=12 format=4 uid="uid://c1r25yahmaosa"]
 
 [ext_resource type="Script" uid="uid://q3i5mc3m878" path="res://scripts/game.gd" id="1_iywne"]
 [ext_resource type="PackedScene" uid="uid://cxgtvurlejghu" path="res://scenes/creatures/swarm_master.tscn" id="1_yqjtg"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://cml547fqhdb8g" path="res://scenes/creatures/turtle.tscn" id="3_lnu2h"]
 [ext_resource type="Script" uid="uid://ba353gqvka8" path="res://scripts/bullet_handler.gd" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://betv6hrnya64x" path="res://scenes/creatures/enemy_master.tscn" id="5_p57ef"]
-[ext_resource type="PackedScene" uid="uid://c3jmk4m075u6k" path="res://scenes/creatures/hedgehog.tscn" id="6_u5sy4"]
 [ext_resource type="Script" uid="uid://4vpilwtnnc3m" path="res://scripts/enemy_handler.gd" id="7_gee14"]
 [ext_resource type="Texture2D" uid="uid://ck23n8irv4mmd" path="res://assets/art/bg_decorations.png" id="10_vtaks"]
 
@@ -53,11 +52,8 @@ position = Vector2(1451, 688)
 [node name="EnemyMaster" parent="Creatures" instance=ExtResource("5_p57ef")]
 position = Vector2(1509, 641)
 
-[node name="Hedgehog" parent="Creatures" instance=ExtResource("6_u5sy4")]
-position = Vector2(957, 500)
-
 [node name="SwarmMaster" parent="Creatures" instance=ExtResource("1_yqjtg")]
-position = Vector2(480, 587)
+position = Vector2(703, 518)
 
 [node name="EnemyHandler" type="Node2D" parent="."]
 script = ExtResource("7_gee14")

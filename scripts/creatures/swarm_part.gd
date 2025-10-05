@@ -12,8 +12,21 @@ const MAX_FORCE: float = 800.0
 const PERCEPTION_RADIUS: float = 300.0 # 把本距离内的生物视作邻居
 const SEPARATION_RADIUS: float = 120.0 # 相邻生物距离过小时会相互排斥
 
+var weight_separation: float = 5.0
+var weight_keep_distance: float = 1.0
+var weight_center_force: float = 3.0
+
 const WEIGHT_SEPARATION: float = 5.0
-const WEIGHT_KEEP_DISTANCE: float = 3.0
+const WEIGHT_KEEP_DISTANCE: float = 1.0
+const WEIGHT_CENTER_FORCE: float = 3.0
+
+const MIN_PLAYER_MASTER_DISTANCE: float = 200.0
+const MAX_PLAYER_MASTER_DISTANCE: float = 300.0
+
+func _ready() -> void:
+	weight_separation = WEIGHT_SEPARATION * randf_range(0.5, 1.5)
+	weight_keep_distance = WEIGHT_KEEP_DISTANCE * randf_range(0.5, 1.5)
+	weight_center_force = WEIGHT_CENTER_FORCE * randf_range(0.5, 1.5)
 
 func _physics_process(delta: float) -> void:
 	tmp_update_label()
@@ -23,11 +36,20 @@ func _physics_process(delta: float) -> void:
 	var neighbors: Array[SwarmPart] = _get_neighbors()
 	var separation_force: Vector2 = _calc_separation(neighbors) * WEIGHT_SEPARATION
 	var keep_distance_force: Vector2 = Vector2.ZERO
+	var center_force = Vector2.ZERO
 	if swarm_master:
 		var master_next_global_position: Vector2 = swarm_master.global_position + swarm_master.velocity * delta
 		keep_distance_force = (master_next_global_position - global_position) * WEIGHT_KEEP_DISTANCE
+		center_force = (swarm_master.global_position - global_position) * WEIGHT_CENTER_FORCE
+		if swarm_master is EnemyMaster:
+			if Global.player_master:
+				var player_master_distance: float = global_position.distance_to(Global.player_master.global_position)
+				if player_master_distance < MIN_PLAYER_MASTER_DISTANCE:
+					keep_distance_force = -(Global.player_master.global_position - global_position) * WEIGHT_KEEP_DISTANCE
+				elif player_master_distance > MAX_PLAYER_MASTER_DISTANCE:
+					keep_distance_force = (Global.player_master.global_position - global_position) * WEIGHT_KEEP_DISTANCE
 
-	var acceleration: Vector2 = separation_force + keep_distance_force
+	var acceleration: Vector2 = separation_force + keep_distance_force + center_force
 	velocity += acceleration * delta
 	if velocity.length() > MAX_SPEED:
 		velocity = velocity.normalized() * MAX_SPEED

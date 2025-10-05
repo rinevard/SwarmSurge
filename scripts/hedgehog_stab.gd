@@ -1,15 +1,19 @@
 extends Area2D
 class_name HedgehogStab
 
+var origin_velocity: Vector2 = Vector2.ZERO
 var velocity: Vector2 = Vector2.ZERO
 var rotation_speed: float = 15.0
 var group: Global.GROUP = Global.GROUP.NEUTRAL
 const HEDGEHOG_STAB = preload("res://scenes/hedgehog_stab.tscn")
 
+const LIFE_TIME: float = 2.0
+var live_time: float = 0.0
+
 static func new_bullet(p_global_position: Vector2, p_velocity: Vector2, p_group: Global.GROUP) -> HedgehogStab:
 	var stab: HedgehogStab = HEDGEHOG_STAB.instantiate()
 	stab.global_position = p_global_position
-	stab.velocity = p_velocity
+	stab.origin_velocity = p_velocity
 	stab.group = p_group
 	
 	# 2: neutral, 5: friend, 6: enemy
@@ -30,6 +34,12 @@ static func new_bullet(p_global_position: Vector2, p_velocity: Vector2, p_group:
 	return stab
 
 func _physics_process(delta: float) -> void:
+	live_time += delta
+	velocity = origin_velocity.lerp(Vector2.ZERO, live_time / LIFE_TIME)
+	if live_time >= LIFE_TIME:
+		call_deferred("queue_free")
+		return
+
 	position += velocity * delta
 	rotation += rotation_speed * delta
 
@@ -46,4 +56,3 @@ func _on_area_entered(area: Area2D) -> void:
 		if (creature.group == Global.GROUP.ENEMY and group == Global.GROUP.FRIEND) \
 			or (creature.group == Global.GROUP.FRIEND and group == Global.GROUP.ENEMY):
 			creature.on_bullet_hit(self)
-			call_deferred("queue_free")

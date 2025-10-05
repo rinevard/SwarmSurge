@@ -4,6 +4,9 @@ class_name ScorpBullet
 var velocity: Vector2 = Vector2.ZERO
 var group: Global.GROUP = Global.GROUP.NEUTRAL
 const SCORP_BULLET = preload("res://scenes/scorp_bullet.tscn")
+const LIFE_TIME: float = 5.0
+var live_time: float = 0.0
+
 
 static func new_bullet(p_global_position: Vector2, p_velocity: Vector2, p_group: Global.GROUP) -> ScorpBullet:
 	var bullet: ScorpBullet = SCORP_BULLET.instantiate()
@@ -29,6 +32,11 @@ static func new_bullet(p_global_position: Vector2, p_velocity: Vector2, p_group:
 	return bullet
 
 func _physics_process(delta: float) -> void:
+	live_time += delta
+	if live_time >= LIFE_TIME:
+		call_deferred("queue_free")
+		return
+
 	position += velocity * delta
 
 func _on_area_entered(area: Area2D) -> void:

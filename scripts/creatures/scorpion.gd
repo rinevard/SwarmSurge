@@ -1,7 +1,7 @@
 extends SwarmPart
 class_name Scorpion
 
-var bullet_speed: float = 600.0
+var bullet_speed: float = 1000.0
 
 ## override, 索敌发射子弹
 func activate(enemies: Array[BaseCreature]) -> void:
