@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://kv048t7phibc"]
+
+[ext_resource type="Texture2D" uid="uid://qbwtgsdwp6nd" path="res://assets/art/hedgehog_stab.png" id="1_18w6l"]
+[ext_resource type="Script" uid="uid://ybfit0ryigy3" path="res://scripts/hedgehog_stab.gd" id="1_tf2uu"]
+
+[node name="HedgehogStab" type="Area2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_tf2uu")
+
+[node name="Sprites" type="Node2D" parent="."]
+scale = Vector2(0.1, 0.1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprites"]
+texture = ExtResource("1_18w6l")

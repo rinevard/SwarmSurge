@@ -77,7 +77,7 @@ func _activate_self() -> void:
 
 func add_swarm_part(swarm_part: BaseCreature) -> void:
 	swarm_parts.append(swarm_part)
-	swarm_part.update_group(Global.GROUP.FRIEND, self)
+	swarm_part.update_group(Global.GROUP.ENEMY, self)
 
 func remove_swarm_part(swarm_part: BaseCreature) -> void:
 	swarm_parts.erase(swarm_part)

@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://c3jmk4m075u6k"]
+
+[ext_resource type="PackedScene" uid="uid://cjlv33leiso01" path="res://scenes/creatures/swarm_part.tscn" id="1_aotba"]
+[ext_resource type="Script" uid="uid://cd6mcji1o4ntn" path="res://scripts/creatures/hedgehog.gd" id="2_kexk5"]
+[ext_resource type="Texture2D" uid="uid://baidxml36re64" path="res://assets/art/creatures.png" id="3_s71yl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s71yl"]
+radius = 120.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_10ndf"]
+radius = 200.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ja52c"]
+radius = 46.2709
+
+[node name="Hedgehog" instance=ExtResource("1_aotba")]
+script = ExtResource("2_kexk5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NeutralCreatureDetector" index="0"]
+shape = SubResource("CircleShape2D_s71yl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OpponentDetector" index="0"]
+shape = SubResource("CircleShape2D_10ndf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroupDetectedArea" index="0"]
+shape = SubResource("CircleShape2D_ja52c")
+
+[node name="Sprites" type="Node2D" parent="." index="3"]
+scale = Vector2(0.25, 0.25)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprites" index="0"]
+texture = ExtResource("3_s71yl")
+region_enabled = true
+region_rect = Rect2(1114, 805, 526, 374)

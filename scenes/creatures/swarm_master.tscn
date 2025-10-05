@@ -18,14 +18,6 @@ height = 130.0
 z_index = 1
 script = ExtResource("1_f4anc")
 
-[node name="Sprites" type="Node2D" parent="." index="0"]
-scale = Vector2(0.25, 0.25)
-
-[node name="Sprite2D" type="Sprite2D" parent="Sprites" index="0"]
-texture = ExtResource("2_yafsa")
-region_enabled = true
-region_rect = Rect2(119, 886, 567, 316)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NeutralCreatureDetector" index="0"]
 shape = SubResource("CircleShape2D_l84sl")
 
@@ -35,3 +27,11 @@ shape = SubResource("CircleShape2D_ydyxm")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GroupDetectedArea" index="0"]
 rotation = 1.57079
 shape = SubResource("CapsuleShape2D_l84sl")
+
+[node name="Sprites" type="Node2D" parent="." index="3"]
+scale = Vector2(0.25, 0.25)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprites" index="0"]
+texture = ExtResource("2_yafsa")
+region_enabled = true
+region_rect = Rect2(119, 886, 567, 316)
