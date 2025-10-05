@@ -71,3 +71,7 @@ func _rotate_shield(delta) -> void:
 	var pos_offset: Vector2 = desired_pos - shield.global_position
 	var move_step_per_sec: Vector2 = pos_offset / max(time_to_target, 0.0001)
 	shield.global_position = shield.global_position + move_step_per_sec * delta
+
+## override
+func die() -> void:
+	super()

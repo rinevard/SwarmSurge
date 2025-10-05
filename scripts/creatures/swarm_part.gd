@@ -90,3 +90,7 @@ func _steer_towards(desired_velocity: Vector2) -> Vector2:
 		steer = steer * (MAX_FORCE / steer_len)
 	return steer
 #endregion
+
+## override
+func die() -> void:
+	super()

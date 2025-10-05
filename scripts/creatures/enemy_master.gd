@@ -13,6 +13,10 @@ const ACTIVATION_BATCH_INTERVAL: float = 0.3
 
 func _ready() -> void:
 	update_group(Global.GROUP.ENEMY, self)
+	call_deferred("_init_global")
+
+func _init_global() -> void:
+	Global.enemy_masters.append(self)
 
 func _physics_process(delta: float) -> void:
 	_update_swarm_parts_and_enemies()
@@ -97,8 +101,9 @@ func add_swarm_part(swarm_part: BaseCreature) -> void:
 	swarm_part.update_group(Global.GROUP.ENEMY, self)
 
 func remove_swarm_part(swarm_part: BaseCreature) -> void:
-	if swarm_parts.has(swarm_part):
-		swarm_parts.erase(swarm_part)
+	if not swarm_parts.has(swarm_part):
+		return
+	swarm_parts.erase(swarm_part)
 	if swarm_part and is_instance_valid(swarm_part):
 		swarm_part.update_group(Global.GROUP.NEUTRAL, null)
 
@@ -117,7 +122,9 @@ func remove_enemy(creature: BaseCreature) -> void:
 
 # override
 func die() -> void:
-	call_deferred("queue_free")
+	super()
+	Global.enemy_masters.erase(self)
 	var swarm_parts_copy := swarm_parts.duplicate()
 	for part in swarm_parts_copy:
-		remove_swarm_part(part)
+		if part and is_instance_valid(part):
+			remove_swarm_part(part)

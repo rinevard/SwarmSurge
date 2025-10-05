@@ -13,6 +13,10 @@ const ACTIVATION_BATCH_INTERVAL: float = 0.2
 
 func _ready() -> void:
 	update_group(Global.GROUP.FRIEND, self)
+	call_deferred("_init_global")
+
+func _init_global() -> void:
+	Global.player_master = self
 
 func _physics_process(delta: float) -> void:
 	tmp_update_label()
@@ -113,8 +117,9 @@ func add_swarm_part(swarm_part: BaseCreature) -> void:
 	swarm_part.update_group(Global.GROUP.FRIEND, self)
 
 func remove_swarm_part(swarm_part: BaseCreature) -> void:
-	if swarm_parts.has(swarm_part):
-		swarm_parts.erase(swarm_part)
+	if not swarm_parts.has(swarm_part):
+		return
+	swarm_parts.erase(swarm_part)
 	if swarm_part and is_instance_valid(swarm_part):
 		swarm_part.update_group(Global.GROUP.NEUTRAL, null)
 
@@ -130,3 +135,7 @@ func remove_enemy(creature: BaseCreature) -> void:
 	neighbor_enemies[creature] -= 1
 	if neighbor_enemies[creature] <= 0:
 		neighbor_enemies.erase(creature)
+
+## override
+func die() -> void:
+	super()

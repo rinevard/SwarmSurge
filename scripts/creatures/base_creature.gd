@@ -112,5 +112,17 @@ func on_bullet_hit(bullet) -> void:
 	if cur_health <= 0:
 		die()
 
+## 生物在死亡前要把自己从主兽的 swarm_parts 和 neighbor_enemies 里移除
 func die() -> void:
 	print("I die, I'm " + name + "!")
+	var player_master = Global.player_master
+	var enemy_masters = Global.enemy_masters
+	if player_master:
+		if player_master and is_instance_valid(player_master):
+			player_master.remove_swarm_part(self)
+			player_master.remove_enemy(self)
+	for enemy_master in enemy_masters:
+		if enemy_master and is_instance_valid(enemy_master):
+			enemy_master.remove_swarm_part(self)
+			enemy_master.remove_enemy(self)
+	call_deferred("queue_free")
