@@ -33,10 +33,9 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is TurtleShield:
-		print(2)
 		if (area.group == Global.GROUP.ENEMY and group == Global.GROUP.FRIEND) \
 			or (area.group == Global.GROUP.FRIEND and group == Global.GROUP.ENEMY):
-			print("1111111111111111111111 hit shield!")
+			print("scrop bullet hit shield!")
 			return
 
 	var creature = area.get_parent()

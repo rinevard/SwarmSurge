@@ -1,7 +1,7 @@
 extends SwarmPart
 class_name Hedgehog
 
-var bullet_speed: float = 200.0
+var bullet_speed: float = 400.0
 
 ## override, 索敌发射子弹
 func activate(enemies: Array[BaseCreature]) -> void:
@@ -15,4 +15,4 @@ func activate(enemies: Array[BaseCreature]) -> void:
 
 	if nearest_enemy:
 		if Global.bullet_handler:
-			Global.bullet_handler.create_bullet(global_position, (nearest_enemy.global_position - global_position).normalized() * bullet_speed, Global.GROUP.FRIEND, true)
+			Global.bullet_handler.create_bullet(global_position, (nearest_enemy.global_position - global_position).normalized() * bullet_speed, group, true)

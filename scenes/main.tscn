@@ -8,3 +8,4 @@ script = ExtResource("1_0wfyh")
 metadata/_edit_lock_ = true
 
 [node name="Game" parent="." instance=ExtResource("4_jyhfs")]
+metadata/_edit_lock_ = true

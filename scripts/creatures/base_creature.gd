@@ -3,6 +3,7 @@ class_name BaseCreature
 
 var group: Global.GROUP = Global.GROUP.NEUTRAL
 var swarm_master: BaseCreature = null
+var cur_health: int = 4
 
 @onready var neutral_creature_detector: CreatureDetector = $NeutralCreatureDetector
 @onready var opponent_detector: OpponentDetector = $OpponentDetector
@@ -105,5 +106,11 @@ func _on_opponent_creature_exited(creature: BaseCreature) -> void:
 				# 老大敌人走了喵
 				swarm_master.remove_enemy(creature)
 
-func on_bullet_hit(bullet: ScorpBullet) -> void:
-	print("bullet hit me! I am " + name + "!")
+func on_bullet_hit(bullet) -> void:
+	cur_health -= 1
+	$HealthLabel.text = "HP: " + str(cur_health)
+	if cur_health <= 0:
+		die()
+
+func die() -> void:
+	pass

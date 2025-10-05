@@ -34,6 +34,12 @@ func _physics_process(delta: float) -> void:
 	rotation += rotation_speed * delta
 
 func _on_area_entered(area: Area2D) -> void:
+	if area is TurtleShield:
+		if (area.group == Global.GROUP.ENEMY and group == Global.GROUP.FRIEND) \
+			or (area.group == Global.GROUP.FRIEND and group == Global.GROUP.ENEMY):
+			print("hedgehog stab hit shield!")
+			return
+
 	var creature = area.get_parent()
 	if creature is BaseCreature:
 		if (creature.group == Global.GROUP.ENEMY and group == Global.GROUP.FRIEND) \

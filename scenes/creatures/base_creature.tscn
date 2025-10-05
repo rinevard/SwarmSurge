@@ -30,6 +30,14 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "123"
 
+[node name="HealthLabel" type="Label" parent="."]
+offset_left = -26.0
+offset_top = -119.0
+offset_right = 120.0
+offset_bottom = -46.0
+theme_override_font_sizes/font_size = 48
+text = "HP: 4"
+
 [connection signal="area_entered" from="NeutralCreatureDetector" to="NeutralCreatureDetector" method="_on_area_entered"]
 [connection signal="neutral_creature_detected" from="NeutralCreatureDetector" to="." method="_on_neutral_creature_detected"]
 [connection signal="area_entered" from="OpponentDetector" to="OpponentDetector" method="_on_area_entered"]

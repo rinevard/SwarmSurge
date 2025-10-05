@@ -36,13 +36,13 @@ position = Vector2(672, 420)
 position = Vector2(723, 674)
 
 [node name="Scorpion2" parent="Creatures" instance=ExtResource("2_lnu2h")]
-position = Vector2(1024, 686)
+position = Vector2(1451, 688)
 
 [node name="EnemyMaster" parent="Creatures" instance=ExtResource("5_p57ef")]
 position = Vector2(1509, 641)
 
 [node name="Hedgehog" parent="Creatures" instance=ExtResource("6_u5sy4")]
-position = Vector2(1538, 539)
+position = Vector2(957, 500)
 
 [node name="EnemyHandler" type="Node2D" parent="."]
 script = ExtResource("7_gee14")

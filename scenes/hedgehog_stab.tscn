@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://kv048t7phibc"]
+[gd_scene load_steps=4 format=3 uid="uid://kv048t7phibc"]
 
 [ext_resource type="Texture2D" uid="uid://qbwtgsdwp6nd" path="res://assets/art/hedgehog_stab.png" id="1_18w6l"]
 [ext_resource type="Script" uid="uid://ybfit0ryigy3" path="res://scripts/hedgehog_stab.gd" id="1_tf2uu"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tf2uu"]
+size = Vector2(69, 27)
+
 [node name="HedgehogStab" type="Area2D"]
 collision_layer = 4
-collision_mask = 0
+collision_mask = 64
+monitorable = false
 script = ExtResource("1_tf2uu")
 
 [node name="Sprites" type="Node2D" parent="."]
@@ -13,3 +17,9 @@ scale = Vector2(0.1, 0.1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprites"]
 texture = ExtResource("1_18w6l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_tf2uu")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
