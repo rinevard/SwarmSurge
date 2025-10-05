@@ -29,6 +29,8 @@ func _ready() -> void:
 	weight_center_force = WEIGHT_CENTER_FORCE * randf_range(0.5, 1.5)
 
 func _physics_process(delta: float) -> void:
+	if Global.game_paused:
+		return
 	tmp_update_label()
 	if group == Global.GROUP.NEUTRAL:
 		return

@@ -34,6 +34,8 @@ static func new_bullet(p_global_position: Vector2, p_velocity: Vector2, p_group:
 	return stab
 
 func _physics_process(delta: float) -> void:
+	if Global.game_paused:
+		return
 	live_time += delta
 	velocity = origin_velocity.lerp(Vector2.ZERO, live_time / LIFE_TIME)
 	if live_time >= LIFE_TIME:

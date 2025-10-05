@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://1eymsm54kac0"]
+[gd_scene load_steps=6 format=3 uid="uid://1eymsm54kac0"]
 
-[ext_resource type="Texture2D" uid="uid://dcx2oxfar2x1" path="res://assets/art/menu.png" id="1_2hgiw"]
-[ext_resource type="PackedScene" uid="uid://c3dxa4d5qober" path="res://scenes/my_button.tscn" id="2_l76ww"]
-[ext_resource type="PackedScene" uid="uid://8nfdqe4dxm7d" path="res://scenes/my_label.tscn" id="3_msqo0"]
+[ext_resource type="Script" uid="uid://bl4voo04ep6cc" path="res://scripts/pause_menu.gd" id="1_5d2l8"]
+[ext_resource type="Texture2D" uid="uid://dcx2oxfar2x1" path="res://assets/art/menu.png" id="2_7l7mv"]
+[ext_resource type="PackedScene" uid="uid://8nfdqe4dxm7d" path="res://scenes/my_label.tscn" id="3_v4r4p"]
+[ext_resource type="PackedScene" uid="uid://c3dxa4d5qober" path="res://scenes/my_button.tscn" id="4_1s2dm"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l76ww"]
-texture = ExtResource("1_2hgiw")
+texture = ExtResource("2_7l7mv")
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
@@ -15,6 +16,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("1_5d2l8")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.34, 0.34, 0.34, 0.588235)
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -31,7 +42,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_l76ww")
 
-[node name="MyLabel" parent="Panel" instance=ExtResource("3_msqo0")]
+[node name="MyLabel" parent="Panel" instance=ExtResource("3_v4r4p")]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 offset_left = 200.0
@@ -67,14 +78,17 @@ grow_vertical = 2
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="ContinueButton" parent="Panel/VBoxContainer" instance=ExtResource("2_l76ww")]
+[node name="ContinueButton" parent="Panel/VBoxContainer" instance=ExtResource("4_1s2dm")]
 custom_minimum_size = Vector2(340, 120)
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Continue"
 
-[node name="ResetButton" parent="Panel/VBoxContainer" instance=ExtResource("2_l76ww")]
+[node name="ResetButton" parent="Panel/VBoxContainer" instance=ExtResource("4_1s2dm")]
 custom_minimum_size = Vector2(340, 120)
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Reset"
+
+[connection signal="pressed" from="Panel/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]

@@ -19,6 +19,8 @@ func _init_global() -> void:
 	Global.player_master = self
 
 func _physics_process(delta: float) -> void:
+	if Global.game_paused:
+		return
 	tmp_update_label()
 	_update_swarm_parts_and_enemies()
 

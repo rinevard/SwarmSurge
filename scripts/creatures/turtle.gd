@@ -15,6 +15,8 @@ const SCALE_MAX: float = 2.0  # 最大缩放倍数
 
 ## override, 转动龟壳使其在 master 到自己的连线的射线上
 func _physics_process(delta: float) -> void:
+	if Global.game_paused:
+		return
 	super(delta)
 	_rotate_shield(delta)
 

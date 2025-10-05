@@ -32,6 +32,8 @@ static func new_bullet(p_global_position: Vector2, p_velocity: Vector2, p_group:
 	return bullet
 
 func _physics_process(delta: float) -> void:
+	if Global.game_paused:
+		return
 	live_time += delta
 	if live_time >= LIFE_TIME:
 		call_deferred("queue_free")
