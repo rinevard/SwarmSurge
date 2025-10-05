@@ -13,6 +13,8 @@ var bullet_handler: BulletHandler = null
 var player_master: SwarmMaster = null
 var enemy_masters: Array[EnemyMaster] = []
 
+var collected_creature_count: int = 0
+
 #region 教程
 var tutorial_ended: bool = false
 var first_creature_picked: bool = false
@@ -24,4 +26,5 @@ var game_paused: bool = false
 func reset_game_data(game: Game) -> void:
 	bullet_handler = game.bullet_handler
 	player_master = null
+	collected_creature_count = 0
 	enemy_masters = []

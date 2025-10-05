@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbs6bdodguer6"]
+
+[ext_resource type="PackedScene" uid="uid://8nfdqe4dxm7d" path="res://scenes/my_label.tscn" id="1_661us"]
+[ext_resource type="Script" uid="uid://cu3mjs3t8h8a1" path="res://scripts/task_shower.gd" id="1_rmgnv"]
+
+[node name="TaskShower" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_rmgnv")
+
+[node name="MyLabel" parent="." instance=ExtResource("1_661us")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = 0.0
+offset_bottom = 172.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0.145098, 0.211765, 0.341176, 1)
+theme_override_font_sizes/bold_italics_font_size = 48
+theme_override_font_sizes/italics_font_size = 48
+theme_override_font_sizes/mono_font_size = 48
+theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/bold_font_size = 48
+horizontal_alignment = 1
+vertical_alignment = 1

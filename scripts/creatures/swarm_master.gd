@@ -160,6 +160,7 @@ func _activate_self() -> void:
 
 func add_swarm_part(swarm_part: BaseCreature) -> void:
 	Global.first_creature_picked = true
+	Global.collected_creature_count += 1
 	swarm_parts[swarm_part] = true
 	swarm_part.update_group(Global.GROUP.FRIEND, self)
 

@@ -97,7 +97,7 @@ z_index = 0
 position = Vector2(250, 678)
 
 [node name="Scorpion" parent="Creatures" instance=ExtResource("2_lnu2h")]
-position = Vector2(1070, 632)
+position = Vector2(714, 684)
 
 [node name="Turtle" parent="Creatures" instance=ExtResource("3_lnu2h")]
 position = Vector2(1967, 608)

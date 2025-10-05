@@ -35,11 +35,13 @@ func _toggle_pause() -> void:
 
 func _on_pause_menu_pause_clicked() -> void:
 	_toggle_pause()
+	pause_menu.set_text("Paused")
 
 func _on_pause_menu_reset_game() -> void:
 	Global.game_paused = true
 	MusicPlayer.stop_all()
 	pause_menu.hide()
+	pause_menu.set_text("Paused")
 	await _transition_fade_in()
 
 	if game and is_instance_valid(game):
@@ -97,3 +99,8 @@ func _on_die_menu_reset_clicked() -> void:
 	Global.game_paused = false
 	await _transition_fade_out()
 	tutorial_shower.start_tutorial()
+
+
+func _on_task_shower_game_win() -> void:
+	pause_menu.set_text("You Win!")
+	_toggle_pause()
