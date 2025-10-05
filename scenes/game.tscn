@@ -92,7 +92,7 @@ position = Vector2(1509, 641)
 
 [node name="SwarmMaster" parent="Creatures" instance=ExtResource("1_yqjtg")]
 z_index = 0
-position = Vector2(140, 689)
+position = Vector2(435, 617)
 
 [node name="Hedgehog" parent="Creatures" instance=ExtResource("6_u5sy4")]
 

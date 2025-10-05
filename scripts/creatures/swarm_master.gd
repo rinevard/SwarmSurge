@@ -12,6 +12,7 @@ const ACTIVATION_STEP: float = 100.0
 const ACTIVATION_BATCH_INTERVAL: float = 0.5
 
 func _ready() -> void:
+	super()
 	MusicPlayer.init_music()
 	MusicPlayer.play_master()
 	update_group(Global.GROUP.FRIEND, self)

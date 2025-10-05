@@ -17,6 +17,7 @@ const MAX_SPEED = 250.0
 const SIN_WEIGHT = 1000.0
 
 func _ready() -> void:
+	super()
 	update_group(Global.GROUP.ENEMY, self)
 	call_deferred("_init_global")
 	$AnimationPlayer.play("normal")

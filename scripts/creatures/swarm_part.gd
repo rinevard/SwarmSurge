@@ -24,6 +24,7 @@ const MIN_PLAYER_MASTER_DISTANCE: float = 200.0
 const MAX_PLAYER_MASTER_DISTANCE: float = 300.0
 
 func _ready() -> void:
+	super()
 	weight_separation = WEIGHT_SEPARATION * randf_range(0.5, 1.5)
 	weight_keep_distance = WEIGHT_KEEP_DISTANCE * randf_range(0.5, 1.5)
 	weight_center_force = WEIGHT_CENTER_FORCE * randf_range(0.5, 1.5)
