@@ -7,11 +7,10 @@ const MAX_SPEED: float = 600.0
 const MIN_SPEED: float = 80.0
 const MAX_FORCE: float = 800.0
 
-const PERCEPTION_RADIUS: float = 200.0
-const SEPARATION_RADIUS: float = 140.0
+const PERCEPTION_RADIUS: float = 300.0 # 把本距离内的生物视作邻居
+const SEPARATION_RADIUS: float = 150.0 # 相邻生物应当尽量保持本距离
 
 const WEIGHT_SEPARATION: float = 5.0
-const WEIGHT_COHESION: float = 1.0
 const WEIGHT_KEEP_DISTANCE: float = 3.0
 
 func _physics_process(delta: float) -> void:
@@ -25,9 +24,8 @@ func _physics_process(delta: float) -> void:
 	if swarm_master:
 		var master_next_global_position: Vector2 = swarm_master.global_position + swarm_master.velocity * delta
 		keep_distance_force = (master_next_global_position - global_position) * WEIGHT_KEEP_DISTANCE
-	var cohesion_force: Vector2 = _calc_cohesion_towards_master() * WEIGHT_COHESION
 
-	var acceleration: Vector2 = separation_force + cohesion_force + keep_distance_force
+	var acceleration: Vector2 = separation_force + keep_distance_force
 	velocity += acceleration * delta
 	if velocity.length() > MAX_SPEED:
 		velocity = velocity.normalized() * MAX_SPEED
@@ -81,15 +79,6 @@ func _calc_separation(neighbors: Array[SwarmPart]) -> Vector2:
 	if steer == Vector2.ZERO:
 		return Vector2.ZERO
 	var desired := steer.normalized() * MAX_SPEED
-	return _steer_towards(desired)
-
-func _calc_cohesion_towards_master() -> Vector2:
-	if swarm_master == null:
-		return Vector2.ZERO
-	var to_master: Vector2 = swarm_master.global_position - global_position
-	if to_master == Vector2.ZERO:
-		return Vector2.ZERO
-	var desired := to_master.normalized() * MAX_SPEED
 	return _steer_towards(desired)
 
 func _steer_towards(desired_velocity: Vector2) -> Vector2:
