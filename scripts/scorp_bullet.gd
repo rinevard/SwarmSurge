@@ -3,9 +3,10 @@ class_name ScorpBullet
 
 var velocity: Vector2 = Vector2.ZERO
 var group: Global.GROUP = Global.GROUP.NEUTRAL
+const SCORP_BULLET = preload("res://scenes/scorp_bullet.tscn")
 
 static func new_bullet(p_global_position: Vector2, p_velocity: Vector2, p_group: Global.GROUP) -> ScorpBullet:
-	var bullet: ScorpBullet = preload("res://scenes/scorp_bullet.tscn").instantiate()
+	var bullet: ScorpBullet = SCORP_BULLET.instantiate()
 	bullet.global_position = p_global_position
 	bullet.velocity = p_velocity
 	bullet.group = p_group
@@ -31,6 +32,13 @@ func _physics_process(delta: float) -> void:
 	position += velocity * delta
 
 func _on_area_entered(area: Area2D) -> void:
+	if area is TurtleShield:
+		print(2)
+		if (area.group == Global.GROUP.ENEMY and group == Global.GROUP.FRIEND) \
+			or (area.group == Global.GROUP.FRIEND and group == Global.GROUP.ENEMY):
+			print("1111111111111111111111 hit shield!")
+			return
+
 	var creature = area.get_parent()
 	if creature is BaseCreature:
 		if (creature.group == Global.GROUP.ENEMY and group == Global.GROUP.FRIEND) \

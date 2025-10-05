@@ -78,13 +78,6 @@ func tmp_update_label() -> void:
 		Global.GROUP.NEUTRAL:
 			$GroupLabel.text = "Neutral"
 
-func _on_bullet_detected(bullet: ScorpBullet) -> void:
-	# 敌方子弹和友方角色碰撞, 友方子弹和敌方角色碰撞
-	# 中立角色不和子弹碰撞, 中立子弹不和角色碰撞
-	if (bullet.group == Global.GROUP.ENEMY and group == Global.GROUP.FRIEND) \
-		or (bullet.group == Global.GROUP.FRIEND and group == Global.GROUP.ENEMY):
-		print("bullet hit me! I am " + name + "!")
-
 ## 把中立阵营的 creature 加入自己的聚落中
 func _on_neutral_creature_detected(creature: BaseCreature) -> void:
 	if group == Global.GROUP.NEUTRAL:
