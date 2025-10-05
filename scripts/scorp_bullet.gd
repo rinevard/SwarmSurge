@@ -12,6 +12,7 @@ static func new_bullet(p_global_position: Vector2, p_velocity: Vector2, p_group:
 	var bullet: ScorpBullet = SCORP_BULLET.instantiate()
 	bullet.global_position = p_global_position
 	bullet.velocity = p_velocity
+	bullet.rotation = p_velocity.angle()
 	bullet.group = p_group
 	
 	# 2: neutral, 5: friend, 6: enemy
