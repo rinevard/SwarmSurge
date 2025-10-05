@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://ditlm5gtv4akf"]
+
+[ext_resource type="PackedScene" uid="uid://cjlv33leiso01" path="res://scenes/creatures/swarm_part.tscn" id="1_nthnc"]
+[ext_resource type="Script" uid="uid://y8fcf30meqli" path="res://scripts/creatures/scorpion.gd" id="2_n0plm"]
+[ext_resource type="Texture2D" uid="uid://baidxml36re64" path="res://assets/art/creatures.png" id="3_3qadu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3qadu"]
+radius = 120.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_atvky"]
+radius = 240.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xwqv6"]
+radius = 40.0
+
+[node name="Scorpion" instance=ExtResource("1_nthnc")]
+script = ExtResource("2_n0plm")
+
+[node name="Sprites" type="Node2D" parent="." index="0"]
+scale = Vector2(0.25, 0.25)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprites" index="0"]
+position = Vector2(48, -76)
+texture = ExtResource("3_3qadu")
+region_enabled = true
+region_rect = Rect2(1170, 68, 615, 461)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NeutralCreatureDetector" index="0"]
+shape = SubResource("CircleShape2D_3qadu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OpponentDetector" index="0"]
+shape = SubResource("CircleShape2D_atvky")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroupDetectedArea" index="0"]
+shape = SubResource("CircleShape2D_xwqv6")

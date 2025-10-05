@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://cml547fqhdb8g"]
+
+[ext_resource type="PackedScene" uid="uid://cjlv33leiso01" path="res://scenes/creatures/swarm_part.tscn" id="1_vdf1r"]
+[ext_resource type="Script" uid="uid://bsqjp8hoidkc0" path="res://scripts/creatures/turtle.gd" id="2_1y4ad"]
+[ext_resource type="Texture2D" uid="uid://baidxml36re64" path="res://assets/art/creatures.png" id="2_wdcxx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1y4ad"]
+radius = 120.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wqdtd"]
+radius = 240.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_psu7v"]
+radius = 50.0
+
+[node name="Turtle" instance=ExtResource("1_vdf1r")]
+script = ExtResource("2_1y4ad")
+
+[node name="Sprites" type="Node2D" parent="." index="0"]
+scale = Vector2(0.25, 0.25)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprites" index="0"]
+texture = ExtResource("2_wdcxx")
+region_enabled = true
+region_rect = Rect2(166, 74, 455, 404)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NeutralCreatureDetector" index="0"]
+shape = SubResource("CircleShape2D_1y4ad")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OpponentDetector" index="0"]
+shape = SubResource("CircleShape2D_wqdtd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroupDetectedArea" index="0"]
+shape = SubResource("CircleShape2D_psu7v")

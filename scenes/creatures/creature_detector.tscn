@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b63ojnrd8opnj"]
-
-[ext_resource type="Script" uid="uid://bm2ntdm137udv" path="res://scripts/creatures/creature_detector.gd" id="1_chpfs"]
-
-[node name="CreatureDetector" type="Area2D"]
-collision_mask = 2
-script = ExtResource("1_chpfs")
-
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]

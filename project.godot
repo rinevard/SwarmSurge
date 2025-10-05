@@ -55,4 +55,8 @@ down={
 [layer_names]
 
 2d_physics/layer_1="Detector"
-2d_physics/layer_2="DetectedArea"
+2d_physics/layer_2="NeutralDetectedArea"
+2d_physics/layer_3="Bullet"
+2d_physics/layer_4="BulletDetector"
+2d_physics/layer_5="FriendDetectedArea"
+2d_physics/layer_6="EnemyDetectedArea"

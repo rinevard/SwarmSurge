@@ -1,31 +1,36 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxgtvurlejghu"]
+[gd_scene load_steps=7 format=3 uid="uid://cxgtvurlejghu"]
 
 [ext_resource type="PackedScene" uid="uid://b031ffqlibkfg" path="res://scenes/creatures/base_creature.tscn" id="1_c75lb"]
 [ext_resource type="Script" uid="uid://df85i8ut1bam5" path="res://scripts/creatures/swarm_master.gd" id="1_f4anc"]
 [ext_resource type="Texture2D" uid="uid://baidxml36re64" path="res://assets/art/creatures.png" id="2_yafsa"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l84sl"]
-radius = 36.0
-height = 136.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_l84sl"]
+radius = 120.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ydyxm"]
-radius = 70.0
-height = 146.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_ydyxm"]
+radius = 240.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l84sl"]
+radius = 26.0
+height = 130.0
 
 [node name="SwarmMaster" instance=ExtResource("1_c75lb")]
 script = ExtResource("1_f4anc")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CreatureDetector" index="0"]
-rotation = 1.57079
-shape = SubResource("CapsuleShape2D_l84sl")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectedArea" index="0"]
-shape = SubResource("CapsuleShape2D_ydyxm")
-
-[node name="Sprites" type="Node2D" parent="." index="2"]
+[node name="Sprites" type="Node2D" parent="." index="0"]
 scale = Vector2(0.25, 0.25)
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprites" index="0"]
 texture = ExtResource("2_yafsa")
 region_enabled = true
 region_rect = Rect2(119, 886, 567, 316)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NeutralCreatureDetector" index="0"]
+shape = SubResource("CircleShape2D_l84sl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OpponentDetector" index="0"]
+shape = SubResource("CircleShape2D_ydyxm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroupDetectedArea" index="0"]
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_l84sl")
