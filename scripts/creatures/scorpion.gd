@@ -15,4 +15,7 @@ func activate(enemies: Array[BaseCreature]) -> void:
 
 	if nearest_enemy:
 		if Global.bullet_handler:
+			# 避免子弹卡着不动
+			if (nearest_enemy.global_position.is_equal_approx(global_position)):
+				return
 			Global.bullet_handler.create_bullet(global_position, (nearest_enemy.global_position - global_position).normalized() * bullet_speed, group)

@@ -14,6 +14,7 @@
 script = ExtResource("1_iywne")
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("follow_target")]
+zoom = Vector2(0.5, 0.5)
 script = ExtResource("2_0tnpc")
 follow_target = NodePath("../Creatures/SwarmMaster")
 
@@ -25,9 +26,6 @@ offset_bottom = 2662.0
 color = Color(0.6375, 0.75, 0.665625, 1)
 
 [node name="Creatures" type="Node2D" parent="."]
-
-[node name="SwarmMaster" parent="Creatures" instance=ExtResource("1_yqjtg")]
-position = Vector2(941, 425)
 
 [node name="Scorpion" parent="Creatures" instance=ExtResource("2_lnu2h")]
 position = Vector2(672, 420)
@@ -43,6 +41,8 @@ position = Vector2(1509, 641)
 
 [node name="Hedgehog" parent="Creatures" instance=ExtResource("6_u5sy4")]
 position = Vector2(957, 500)
+
+[node name="SwarmMaster" parent="Creatures" instance=ExtResource("1_yqjtg")]
 
 [node name="EnemyHandler" type="Node2D" parent="."]
 script = ExtResource("7_gee14")

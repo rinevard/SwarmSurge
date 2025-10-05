@@ -113,4 +113,4 @@ func on_bullet_hit(bullet) -> void:
 		die()
 
 func die() -> void:
-	pass
+	print("I die, I'm " + name + "!")

@@ -3,7 +3,7 @@ class_name EnemyMaster
 
 var speed: float = 300.0
 var swarm_parts: Dictionary[BaseCreature, bool] = {} # 使用字典避免重复添加
-var neighbor_enemies: Dictionary[BaseCreature, int] = {} # int 表示计数次数
+var neighbor_enemies: Dictionary[BaseCreature, int] = {} # int 表示计数次数, 一个 creature 可能被聚落里多个生物检测到
 var velocity: Vector2 = Vector2.ZERO
 var time_to_last_activation: float = 0.0
 
@@ -15,6 +15,7 @@ func _ready() -> void:
 	update_group(Global.GROUP.ENEMY, self)
 
 func _physics_process(delta: float) -> void:
+	_update_swarm_parts_and_enemies()
 	tmp_update_label()
 
 	#region 激活
@@ -71,7 +72,23 @@ func _activate_swarm() -> void:
 			if part and is_instance_valid(part):
 				part.activate(neighbor_enemies.keys())
 		await get_tree().create_timer(ACTIVATION_BATCH_INTERVAL).timeout
-	
+
+## 我没时间研究怎么在阵营更换时正确修改字典/数组了, 直接在 physic_process 里一直检查
+func _update_swarm_parts_and_enemies() -> void:
+	var swarm_part_keys := swarm_parts.keys()
+	var enemy_keys := neighbor_enemies.keys()
+	# 如果有非本阵营的, 移除
+	for part in swarm_part_keys:
+		if part and is_instance_valid(part) and part.group == group:
+			continue
+		remove_swarm_part(part)
+
+	# 如果有非敌对的, 移除
+	for enemy in enemy_keys:
+		if enemy and is_instance_valid(enemy) and enemy.group == Global.GROUP.FRIEND:
+			continue
+		remove_enemy(enemy)
+
 func _activate_self() -> void:
 	pass
 
@@ -82,7 +99,8 @@ func add_swarm_part(swarm_part: BaseCreature) -> void:
 func remove_swarm_part(swarm_part: BaseCreature) -> void:
 	if swarm_parts.has(swarm_part):
 		swarm_parts.erase(swarm_part)
-	swarm_part.update_group(Global.GROUP.NEUTRAL, null)
+	if swarm_part and is_instance_valid(swarm_part):
+		swarm_part.update_group(Global.GROUP.NEUTRAL, null)
 
 func add_enemy(creature: BaseCreature) -> void:
 	if neighbor_enemies.has(creature):
@@ -96,3 +114,10 @@ func remove_enemy(creature: BaseCreature) -> void:
 	neighbor_enemies[creature] -= 1
 	if neighbor_enemies[creature] <= 0:
 		neighbor_enemies.erase(creature)
+
+# override
+func die() -> void:
+	call_deferred("queue_free")
+	var swarm_parts_copy := swarm_parts.duplicate()
+	for part in swarm_parts_copy:
+		remove_swarm_part(part)
