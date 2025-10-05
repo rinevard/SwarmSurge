@@ -5,10 +5,11 @@ var group: Global.GROUP = Global.GROUP.NEUTRAL
 var swarm_master: BaseCreature = null
 var cur_health: int = 4
 
+@onready var health_bar: HealthBar = $HealthBar
+@onready var group_circle: Sprite2D = $GroupCircle
 @onready var neutral_creature_detector: CreatureDetector = $NeutralCreatureDetector
 @onready var opponent_detector: OpponentDetector = $OpponentDetector
 @onready var group_detected_area: Area2D = $GroupDetectedArea
-@onready var group_circle: Sprite2D = $GroupCircle
 
 func _ready() -> void:
 	update_group(group, swarm_master)
@@ -103,7 +104,7 @@ func _on_opponent_creature_exited(creature: BaseCreature) -> void:
 
 func on_bullet_hit(bullet) -> void:
 	cur_health -= 1
-	$HealthLabel.text = "HP: " + str(cur_health)
+	health_bar.update_health(cur_health)
 	if cur_health <= 0:
 		die()
 

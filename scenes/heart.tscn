@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://6wtw03aepnar"]
+
+[ext_resource type="Script" uid="uid://bgdxo3bnmlwr8" path="res://scripts/heart.gd" id="1_ycbwg"]
+[ext_resource type="Texture2D" uid="uid://bx51ble37v444" path="res://assets/art/heart_outline.png" id="2_txm48"]
+[ext_resource type="Shader" uid="uid://brssass62e7pc" path="res://scripts/heart.gdshader" id="3_krgnv"]
+[ext_resource type="Texture2D" uid="uid://bbj42lwh82qs4" path="res://assets/art/heart_full.png" id="4_txm48"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_txm48"]
+shader = ExtResource("3_krgnv")
+shader_parameter/progress = 0.0
+
+[node name="Heart" type="Control"]
+custom_minimum_size = Vector2(247, 207)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ycbwg")
+
+[node name="HeartOutline" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_txm48")
+
+[node name="HeartFull" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_txm48")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_txm48")

@@ -1,12 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://b031ffqlibkfg"]
+[gd_scene load_steps=6 format=3 uid="uid://b031ffqlibkfg"]
 
 [ext_resource type="Script" uid="uid://c3vgbxsctnyiy" path="res://scripts/creatures/base_creature.gd" id="1_jsg5w"]
 [ext_resource type="Texture2D" uid="uid://5imwsp0ak027" path="res://assets/art/group_circle.png" id="2_8qau0"]
 [ext_resource type="Script" uid="uid://bm2ntdm137udv" path="res://scripts/creatures/neutral_creature_detector.gd" id="3_8qau0"]
 [ext_resource type="Script" uid="uid://dj0m243dsoot8" path="res://scripts/opponent_detector.gd" id="5_ii4yc"]
+[ext_resource type="PackedScene" uid="uid://b0gqg1qa1skcb" path="res://scenes/health_bar.tscn" id="5_y24lw"]
 
 [node name="BaseCreature" type="Node2D"]
 script = ExtResource("1_jsg5w")
+
+[node name="HealthBar" parent="." instance=ExtResource("5_y24lw")]
+offset_left = -98.0
+offset_top = -143.0
+offset_right = 902.0
+offset_bottom = 64.0
+scale = Vector2(0.2, 0.2)
 
 [node name="GroupCircle" type="Sprite2D" parent="."]
 scale = Vector2(0.4, 0.4)
@@ -25,14 +33,6 @@ script = ExtResource("5_ii4yc")
 [node name="GroupDetectedArea" type="Area2D" parent="."]
 collision_layer = 2
 monitoring = false
-
-[node name="HealthLabel" type="Label" parent="."]
-offset_left = -26.0
-offset_top = -119.0
-offset_right = 120.0
-offset_bottom = -46.0
-theme_override_font_sizes/font_size = 48
-text = "HP: 4"
 
 [connection signal="area_entered" from="NeutralCreatureDetector" to="NeutralCreatureDetector" method="_on_area_entered"]
 [connection signal="neutral_creature_detected" from="NeutralCreatureDetector" to="." method="_on_neutral_creature_detected"]
