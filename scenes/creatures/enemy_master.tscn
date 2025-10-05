@@ -103,15 +103,12 @@ _data = {
 [node name="EnemyMaster" instance=ExtResource("1_s0yiq")]
 script = ExtResource("2_y5iur")
 
-[node name="GroupCircle" parent="." index="0"]
+[node name="GroupCircle" parent="." index="1"]
 position = Vector2(-2, 19)
 scale = Vector2(0.5, 0.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NeutralCreatureDetector" index="0"]
 shape = SubResource("CircleShape2D_enc81")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OpponentDetector" index="0"]
-shape = SubResource("CircleShape2D_lhcut")
 
 [node name="Sprites" type="Node2D" parent="." index="3"]
 scale = Vector2(0.5, 0.5)
@@ -127,6 +124,9 @@ position = Vector2(0, -20)
 texture = ExtResource("4_lhcut")
 region_enabled = true
 region_rect = Rect2(100, 1277, 113, 47)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OpponentDetector" index="0"]
+shape = SubResource("CircleShape2D_lhcut")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GroupDetectedArea" index="0"]
 rotation = 1.57079

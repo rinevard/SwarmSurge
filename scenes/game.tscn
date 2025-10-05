@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://c1r25yahmaosa"]
+[gd_scene load_steps=12 format=4 uid="uid://c1r25yahmaosa"]
 
 [ext_resource type="Script" uid="uid://q3i5mc3m878" path="res://scripts/game.gd" id="1_iywne"]
 [ext_resource type="PackedScene" uid="uid://cxgtvurlejghu" path="res://scenes/creatures/swarm_master.tscn" id="1_yqjtg"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c3jmk4m075u6k" path="res://scenes/creatures/hedgehog.tscn" id="6_u5sy4"]
 [ext_resource type="Script" uid="uid://4vpilwtnnc3m" path="res://scripts/enemy_handler.gd" id="7_gee14"]
 [ext_resource type="TileSet" uid="uid://cmjtspbuu7wdl" path="res://resources/tileset.tres" id="10_vtaks"]
+[ext_resource type="PackedScene" uid="uid://8nfdqe4dxm7d" path="res://scenes/my_label.tscn" id="11_kvpfn"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_iywne")
@@ -75,6 +76,19 @@ metadata/_edit_lock_ = true
 scale = Vector2(0.5, 0.5)
 tile_map_data = PackedByteArray("AADs/yYAAAANABkAAADN/zYAAAAPAAMAAAD9/0UAAAAPAAMAAAAOADwAAAAPAAMAAAA6AEYAAAAPAAMAAACDADUAAAAAABgAAACBAO7/AAANABkAAABjACAAAAAAABgAAABgAO7/AAAaABkAAABgAO//AAAaABkAAAAsAB8AAAAAABgAAAATABoAAAAPAAMAAAAsAAIAAAAaABkAAAD0//X/AAANABkAAAAXAOT/AAAPAAMAAADF//v/AAAPAAMAAAC9/+b/AAAPAAMAAADY/wsAAAAaABkAAABfAD8AAAAaABkAAADg/+n/AAANABkAAACTANr/AAACAAMAAACSAFcAAAACAAMAAAC3/1kAAAACAAMAAAC3/9r/AAACAAMAAAA=")
 tile_set = ExtResource("10_vtaks")
+
+[node name="SillyEgg" parent="." instance=ExtResource("11_kvpfn")]
+offset_left = 1838.0
+offset_top = -444.0
+offset_right = 2309.0
+offset_bottom = -357.0
+theme_override_colors/default_color = Color(0.435294, 0.262745, 0.403922, 1)
+theme_override_font_sizes/bold_italics_font_size = 64
+theme_override_font_sizes/italics_font_size = 64
+theme_override_font_sizes/mono_font_size = 64
+theme_override_font_sizes/normal_font_size = 64
+theme_override_font_sizes/bold_font_size = 64
+text = "Ludum Dare 58"
 
 [node name="Creatures" type="Node2D" parent="."]
 
