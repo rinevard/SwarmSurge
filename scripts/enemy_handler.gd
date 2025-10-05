@@ -52,7 +52,7 @@ func _spawn_enemy_colony() -> void:
 	# 基于友方聚落大小，决定敌方副兽数量与生成距离
 	var friend_swarm_size: int = 0
 	if swarm_master and is_instance_valid(swarm_master):
-		friend_swarm_size = swarm_master.swarm_parts.size()
+		friend_swarm_size = swarm_master.swarm_parts.keys().size()
 
 	var num_parts: int = int(round(float(friend_swarm_size) * randf_range(ENEMY_SIZE_MIN_RATIO, ENEMY_SIZE_MAX_RATIO)))
 	var distance_from_base: float = BASE_SPAWN_DISTANCE + float(friend_swarm_size) * DISTANCE_PER_SWARM_SIZE

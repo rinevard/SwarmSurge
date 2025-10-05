@@ -2,7 +2,7 @@ extends BaseCreature
 class_name EnemyMaster
 
 var speed: float = 300.0
-var swarm_parts: Array[BaseCreature] = []
+var swarm_parts: Dictionary[BaseCreature, bool] = {} # 使用字典避免重复添加
 var neighbor_enemies: Dictionary[BaseCreature, int] = {} # int 表示计数次数
 var velocity: Vector2 = Vector2.ZERO
 var time_to_last_activation: float = 0.0
@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 func _activate_swarm() -> void:
 	_activate_self()
 	# 记录当前激活时刻的副兽数组
-	var parts_snapshot: Array[BaseCreature] = swarm_parts.duplicate()
+	var parts_snapshot: Array[BaseCreature] = swarm_parts.keys()
 	if parts_snapshot.is_empty():
 		return
 
@@ -76,11 +76,12 @@ func _activate_self() -> void:
 	pass
 
 func add_swarm_part(swarm_part: BaseCreature) -> void:
-	swarm_parts.append(swarm_part)
+	swarm_parts[swarm_part] = true
 	swarm_part.update_group(Global.GROUP.ENEMY, self)
 
 func remove_swarm_part(swarm_part: BaseCreature) -> void:
-	swarm_parts.erase(swarm_part)
+	if swarm_parts.has(swarm_part):
+		swarm_parts.erase(swarm_part)
 	swarm_part.update_group(Global.GROUP.NEUTRAL, null)
 
 func add_enemy(creature: BaseCreature) -> void:

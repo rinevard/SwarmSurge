@@ -48,7 +48,7 @@ func _get_neighbors() -> Array[SwarmPart]:
 	if not (swarm_master is SwarmMaster):
 		return result
 	var master := swarm_master as SwarmMaster
-	for member in master.swarm_parts:
+	for member in master.swarm_parts.keys():
 		if member == self:
 			continue
 		if member is SwarmPart:
