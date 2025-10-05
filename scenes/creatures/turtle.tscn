@@ -34,4 +34,4 @@ shape = SubResource("CircleShape2D_wqdtd")
 shape = SubResource("CircleShape2D_psu7v")
 
 [node name="ShieldPosMarker" type="Marker2D" parent="." index="5"]
-position = Vector2(1, -115)
+position = Vector2(0, -150)
