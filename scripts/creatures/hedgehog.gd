@@ -19,6 +19,8 @@ func activate(enemies: Array[BaseCreature]) -> void:
 			# 避免子弹卡着不动
 			if (nearest_enemy.global_position.is_equal_approx(global_position)):
 				return
+			if group == Global.GROUP.FRIEND:
+				SfxPlayer.play_sfx(SfxPlayer.SFXs.HEDGEHOG, global_position)
 			Global.bullet_handler.create_bullet(global_position, (nearest_enemy.global_position - global_position).normalized() * bullet_speed, group, true)
 
 ## override

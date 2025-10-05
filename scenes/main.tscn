@@ -20,6 +20,7 @@ metadata/_edit_lock_ = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("3_sugp2")]
+visible = false
 
 [node name="TransitionMask" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_tefeu")

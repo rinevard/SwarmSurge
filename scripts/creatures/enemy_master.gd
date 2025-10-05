@@ -58,6 +58,7 @@ func _physics_process(delta: float) -> void:
 
 func _activate_swarm() -> void:
 	_activate_self()
+	await get_tree().create_timer(0.5).timeout
 	# 记录当前激活时刻的副兽数组
 	var parts_snapshot: Array[BaseCreature] = swarm_parts.keys()
 	if parts_snapshot.is_empty():

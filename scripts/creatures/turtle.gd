@@ -28,7 +28,9 @@ func activate(_enemies: Array[BaseCreature]) -> void:
 	# 如果已经在缩放中，忽略新的激活
 	if _is_scaling:
 		return
-	
+
+	if group == Global.GROUP.FRIEND:
+		SfxPlayer.play_sfx(SfxPlayer.SFXs.SHIELD, global_position)
 	# 开始缩放动画
 	_is_scaling = true
 	_scale_progress = 0.0

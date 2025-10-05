@@ -9,7 +9,7 @@ var time_to_last_activation: float = 0.0
 
 const ACTIVATION_INTERVAL: float = 2.0
 const ACTIVATION_STEP: float = 150.0
-const ACTIVATION_BATCH_INTERVAL: float = 0.2
+const ACTIVATION_BATCH_INTERVAL: float = 0.4
 
 func _ready() -> void:
 	update_group(Global.GROUP.FRIEND, self)
@@ -48,7 +48,9 @@ func _physics_process(delta: float) -> void:
 	#endregion
 
 func _activate_swarm() -> void:
+	SfxPlayer.play_sfx(SfxPlayer.SFXs.ACTIVATE_SIGNAL, global_position)
 	_activate_self()
+	await get_tree().create_timer(0.5).timeout
 	# 记录当前激活时刻的副兽数组
 	var parts_snapshot: Array[BaseCreature] = swarm_parts.keys()
 	if parts_snapshot.is_empty():
