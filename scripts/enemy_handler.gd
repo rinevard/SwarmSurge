@@ -33,6 +33,10 @@ const TURTLE_WEIGHT: float = 0.2
 var _check_timer: float = 0.0
 
 func _physics_process(delta: float) -> void:
+	# 教程结束前不刷怪
+	if not Global.tutorial_ended:
+		return
+
 	_check_timer += delta
 	if _check_timer >= CHECK_INTERVAL:
 		print("check")
@@ -55,6 +59,7 @@ func _spawn_enemy_colony() -> void:
 		friend_swarm_size = swarm_master.swarm_parts.keys().size()
 
 	var num_parts: int = int(round(float(friend_swarm_size) * randf_range(ENEMY_SIZE_MIN_RATIO, ENEMY_SIZE_MAX_RATIO)))
+	num_parts = 1 if num_parts <= 1 else num_parts
 	var distance_from_base: float = BASE_SPAWN_DISTANCE + float(friend_swarm_size) * DISTANCE_PER_SWARM_SIZE
 
 	# 随机方向与中心点

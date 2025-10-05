@@ -5,6 +5,7 @@
 [node name="MyLabel" type="RichTextLabel"]
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("1_v08wh")
 theme_override_fonts/mono_font = ExtResource("1_v08wh")
 theme_override_fonts/italics_font = ExtResource("1_v08wh")

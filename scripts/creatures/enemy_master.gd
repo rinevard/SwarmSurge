@@ -26,7 +26,7 @@ func _init_global() -> void:
 	Global.enemy_masters.append(self)
 
 func _physics_process(delta: float) -> void:
-	if Global.game_paused:
+	if Global.game_paused or (not Global.first_creature_picked):
 		return
 	_update_swarm_parts_and_enemies()
 
@@ -158,6 +158,7 @@ func remove_enemy(creature: BaseCreature) -> void:
 # override
 func die() -> void:
 	super()
+	Global.first_enemy_master_destroyed = true
 	Global.enemy_masters.erase(self)
 	var swarm_parts_copy := swarm_parts.duplicate()
 	for part in swarm_parts_copy:

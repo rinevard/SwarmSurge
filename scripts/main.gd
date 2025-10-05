@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var tutorial_shower: Control = $CanvasLayer/TutorialShower
 @onready var pause_menu: PauseMenu = $CanvasLayer/PauseMenu
 @onready var die_menu: DieMenu = $CanvasLayer/DieMenu
 @onready var start_menu: StartMenu = $CanvasLayer/StartMenu
@@ -48,6 +49,7 @@ func _on_pause_menu_reset_game() -> void:
 	call_deferred("add_child", game)
 	Global.game_paused = false
 	await _transition_fade_out()
+	tutorial_shower.start_tutorial()
 
 
 #region 切换场景
@@ -79,6 +81,7 @@ func _on_start_menu_start_clicked() -> void:
 	call_deferred("add_child", game)
 	Global.game_paused = false
 	await _transition_fade_out()
+	tutorial_shower.start_tutorial()
 
 func _on_die_menu_reset_clicked() -> void:
 	Global.game_paused = true
@@ -93,3 +96,4 @@ func _on_die_menu_reset_clicked() -> void:
 	call_deferred("add_child", game)
 	Global.game_paused = false
 	await _transition_fade_out()
+	tutorial_shower.start_tutorial()
