@@ -1,0 +1,87 @@
+[gd_scene load_steps=6 format=3 uid="uid://di7yq25bkslur"]
+
+[ext_resource type="Script" uid="uid://dh7onxat10tgg" path="res://scripts/die_menu.gd" id="1_4utos"]
+[ext_resource type="Texture2D" uid="uid://dcx2oxfar2x1" path="res://assets/art/menu.png" id="1_2606p"]
+[ext_resource type="PackedScene" uid="uid://8nfdqe4dxm7d" path="res://scenes/my_label.tscn" id="1_sbueq"]
+[ext_resource type="PackedScene" uid="uid://c3dxa4d5qober" path="res://scenes/my_button.tscn" id="3_uo3v1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uo3v1"]
+texture = ExtResource("1_2606p")
+
+[node name="DieMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4utos")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.341176, 0.341176, 0.341176, 0.588235)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -300.0
+offset_right = 400.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_uo3v1")
+
+[node name="MyLabel" parent="Panel" instance=ExtResource("1_sbueq")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -308.0
+offset_top = -217.0
+offset_right = 308.0
+offset_bottom = -59.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.145098, 0.211765, 0.341176, 1)
+theme_override_colors/selection_color = Color(0.145098, 0.211765, 0.341176, 1)
+theme_override_font_sizes/bold_italics_font_size = 96
+theme_override_font_sizes/italics_font_size = 96
+theme_override_font_sizes/mono_font_size = 96
+theme_override_font_sizes/normal_font_size = 96
+theme_override_font_sizes/bold_font_size = 96
+text = "Swarm Fades"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.0
+offset_top = 17.0
+offset_right = 170.0
+offset_bottom = 137.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResetButton" parent="Panel/VBoxContainer" instance=ExtResource("3_uo3v1")]
+custom_minimum_size = Vector2(340, 120)
+layout_mode = 2
+text = "Reset"
+
+[connection signal="pressed" from="Panel/VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]

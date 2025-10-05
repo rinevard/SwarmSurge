@@ -78,6 +78,10 @@ tile_set = ExtResource("10_vtaks")
 
 [node name="Creatures" type="Node2D" parent="."]
 
+[node name="SwarmMaster" parent="Creatures" instance=ExtResource("1_yqjtg")]
+z_index = 0
+position = Vector2(435, 617)
+
 [node name="Scorpion" parent="Creatures" instance=ExtResource("2_lnu2h")]
 position = Vector2(672, 420)
 
@@ -89,10 +93,6 @@ position = Vector2(1451, 688)
 
 [node name="EnemyMaster" parent="Creatures" instance=ExtResource("5_p57ef")]
 position = Vector2(1509, 641)
-
-[node name="SwarmMaster" parent="Creatures" instance=ExtResource("1_yqjtg")]
-z_index = 0
-position = Vector2(435, 617)
 
 [node name="Hedgehog" parent="Creatures" instance=ExtResource("6_u5sy4")]
 

@@ -1,5 +1,8 @@
 extends Node
 
+# 仅由 player_master 触发
+signal player_die()
+
 enum GROUP {
 	FRIEND,
 	ENEMY,

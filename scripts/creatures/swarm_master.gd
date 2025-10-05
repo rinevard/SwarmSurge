@@ -185,3 +185,4 @@ func remove_enemy(creature: BaseCreature) -> void:
 ## override
 func die() -> void:
 	super()
+	Global.player_die.emit()
