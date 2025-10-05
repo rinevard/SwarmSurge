@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhqryjcu42scn"]
+
+[ext_resource type="Script" uid="uid://dvrrtmd2wvlwx" path="res://scripts/mini_map.gd" id="1_l143l"]
+
+[node name="MiniMap" type="Panel"]
+offset_right = 69.0
+offset_bottom = 47.0
+script = ExtResource("1_l143l")
