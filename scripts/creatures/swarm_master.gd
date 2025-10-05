@@ -26,7 +26,6 @@ func _physics_process(delta: float) -> void:
 	time_record += delta
 	if Global.game_paused:
 		return
-	tmp_update_label()
 	_update_swarm_parts_and_enemies()
 	_update_music()
 

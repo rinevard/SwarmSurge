@@ -31,7 +31,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if Global.game_paused:
 		return
-	tmp_update_label()
 	if group == Global.GROUP.NEUTRAL:
 		return
 

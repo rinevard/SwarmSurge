@@ -8,6 +8,7 @@ var cur_health: int = 4
 @onready var neutral_creature_detector: CreatureDetector = $NeutralCreatureDetector
 @onready var opponent_detector: OpponentDetector = $OpponentDetector
 @onready var group_detected_area: Area2D = $GroupDetectedArea
+@onready var group_circle: Sprite2D = $GroupCircle
 
 func _ready() -> void:
 	update_group(group, swarm_master)
@@ -20,14 +21,17 @@ func update_group(p_group: Global.GROUP, p_swarm_master: BaseCreature) -> void:
 	match group:
 		# 中立阵营不检测
 		Global.GROUP.NEUTRAL:
+			group_circle.modulate = Color.WHITE
 			neutral_creature_detector.set_deferred("monitoring", false)
 			_update_opponent_detector_by_group()
 			_update_detected_area_by_group()
 		Global.GROUP.FRIEND:
+			group_circle.modulate = Color("099268")
 			neutral_creature_detector.set_deferred("monitoring", true)
 			_update_opponent_detector_by_group()
 			_update_detected_area_by_group()
 		Global.GROUP.ENEMY:
+			group_circle.modulate = Color("e03131")
 			neutral_creature_detector.set_deferred("monitoring", true)
 			_update_opponent_detector_by_group()
 			_update_detected_area_by_group()
@@ -69,15 +73,6 @@ func _update_detected_area_by_group() -> void:
 			group_detected_area.call_deferred("set_collision_layer_value", 2, false)
 			group_detected_area.call_deferred("set_collision_layer_value", 5, false)
 			group_detected_area.call_deferred("set_collision_layer_value", 6, true)
-
-func tmp_update_label() -> void:
-	match group:
-		Global.GROUP.FRIEND:
-			$GroupLabel.text = "Friend"
-		Global.GROUP.ENEMY:
-			$GroupLabel.text = "Enemy"
-		Global.GROUP.NEUTRAL:
-			$GroupLabel.text = "Neutral"
 
 ## 把中立阵营的 creature 加入自己的聚落中
 func _on_neutral_creature_detected(creature: BaseCreature) -> void:

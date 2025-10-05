@@ -28,7 +28,6 @@ func _physics_process(delta: float) -> void:
 	if Global.game_paused:
 		return
 	_update_swarm_parts_and_enemies()
-	tmp_update_label()
 
 	#region 激活
 	time_to_last_activation += delta

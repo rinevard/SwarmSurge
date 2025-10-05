@@ -13,6 +13,57 @@ radius = 480.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ja52c"]
 radius = 46.2709
 
+[sub_resource type="Animation" id="Animation_10ndf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Body:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Eyes:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -8.33333)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/Stabs:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, -63.3333)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprites/Stabs:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_s71yl"]
 resource_name = "normal"
 length = 0.5
@@ -66,57 +117,6 @@ tracks/3/keys = {
 "values": [Vector2(1, 1), Vector2(1.1, 0.9)]
 }
 
-[sub_resource type="Animation" id="Animation_10ndf"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprites/Body:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprites/Eyes:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -8.33333)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprites/Stabs:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-8, -63.3333)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprites/Stabs:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_10ndf"]
 _data = {
 &"RESET": SubResource("Animation_10ndf"),
@@ -126,17 +126,17 @@ _data = {
 [node name="Hedgehog" instance=ExtResource("1_aotba")]
 script = ExtResource("2_kexk5")
 
+[node name="GroupCircle" parent="." index="0"]
+position = Vector2(-1, 13)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NeutralCreatureDetector" index="0"]
 shape = SubResource("CircleShape2D_s71yl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OpponentDetector" index="0"]
 shape = SubResource("CircleShape2D_10ndf")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GroupDetectedArea" index="0"]
-shape = SubResource("CircleShape2D_ja52c")
-
 [node name="Sprites" type="Node2D" parent="." index="3"]
-scale = Vector2(0.36, 0.36)
+scale = Vector2(0.4, 0.4)
 
 [node name="Body" type="Sprite2D" parent="Sprites" index="0"]
 texture = ExtResource("4_10ndf")
@@ -154,6 +154,18 @@ position = Vector2(0, -8.33333)
 texture = ExtResource("4_10ndf")
 region_enabled = true
 region_rect = Rect2(100, 1277, 113, 47)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroupDetectedArea" index="0"]
+shape = SubResource("CircleShape2D_ja52c")
+
+[node name="GroupLabel" type="Label" parent="." index="5"]
+offset_left = -29.0
+offset_top = -66.0
+offset_right = 26.0
+offset_bottom = -21.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "123"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
 libraries = {

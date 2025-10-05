@@ -1,11 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://b031ffqlibkfg"]
+[gd_scene load_steps=5 format=3 uid="uid://b031ffqlibkfg"]
 
 [ext_resource type="Script" uid="uid://c3vgbxsctnyiy" path="res://scripts/creatures/base_creature.gd" id="1_jsg5w"]
+[ext_resource type="Texture2D" uid="uid://5imwsp0ak027" path="res://assets/art/group_circle.png" id="2_8qau0"]
 [ext_resource type="Script" uid="uid://bm2ntdm137udv" path="res://scripts/creatures/neutral_creature_detector.gd" id="3_8qau0"]
 [ext_resource type="Script" uid="uid://dj0m243dsoot8" path="res://scripts/opponent_detector.gd" id="5_ii4yc"]
 
 [node name="BaseCreature" type="Node2D"]
 script = ExtResource("1_jsg5w")
+
+[node name="GroupCircle" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_8qau0")
 
 [node name="NeutralCreatureDetector" type="Area2D" parent="."]
 collision_mask = 2
@@ -20,15 +25,6 @@ script = ExtResource("5_ii4yc")
 [node name="GroupDetectedArea" type="Area2D" parent="."]
 collision_layer = 2
 monitoring = false
-
-[node name="GroupLabel" type="Label" parent="."]
-offset_left = -29.0
-offset_top = -66.0
-offset_right = 26.0
-offset_bottom = -21.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
-text = "123"
 
 [node name="HealthLabel" type="Label" parent="."]
 offset_left = -26.0
