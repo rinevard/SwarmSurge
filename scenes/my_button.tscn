@@ -1,0 +1,27 @@
+[gd_scene load_steps=9 format=3 uid="uid://c3dxa4d5qober"]
+
+[ext_resource type="FontFile" uid="uid://4h1h0kc60fb0" path="res://assets/Excalifont-Regular.woff2" id="1_igkre"]
+[ext_resource type="Texture2D" uid="uid://cx0p84kg1jj4l" path="res://assets/art/button.png" id="2_yr5ys"]
+[ext_resource type="Texture2D" uid="uid://8ky8rm5803kp" path="res://assets/art/button_hover.png" id="3_y2312"]
+[ext_resource type="Texture2D" uid="uid://b6453imrhnbou" path="res://assets/art/button_pressed.png" id="4_hld61"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i1kea"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hld61"]
+texture = ExtResource("3_y2312")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2ab2j"]
+texture = ExtResource("4_hld61")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yr5ys"]
+texture = ExtResource("2_yr5ys")
+
+[node name="MyButton" type="Button"]
+offset_right = 458.0
+offset_bottom = 163.0
+theme_override_fonts/font = ExtResource("1_igkre")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxTexture_i1kea")
+theme_override_styles/hover = SubResource("StyleBoxTexture_hld61")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2ab2j")
+theme_override_styles/normal = SubResource("StyleBoxTexture_yr5ys")

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://8nfdqe4dxm7d"]
+
+[ext_resource type="FontFile" uid="uid://4h1h0kc60fb0" path="res://assets/Excalifont-Regular.woff2" id="1_v08wh"]
+
+[node name="MyLabel" type="RichTextLabel"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_fonts/normal_font = ExtResource("1_v08wh")
+theme_override_fonts/mono_font = ExtResource("1_v08wh")
+theme_override_fonts/italics_font = ExtResource("1_v08wh")
+theme_override_fonts/bold_italics_font = ExtResource("1_v08wh")
+theme_override_fonts/bold_font = ExtResource("1_v08wh")
+bbcode_enabled = true
