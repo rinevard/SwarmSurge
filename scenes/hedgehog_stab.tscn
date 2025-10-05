@@ -12,6 +12,10 @@ collision_mask = 64
 monitorable = false
 script = ExtResource("1_tf2uu")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_tf2uu")
+
 [node name="Sprites" type="Node2D" parent="."]
 scale = Vector2(0.36, 0.36)
 
@@ -19,9 +23,5 @@ scale = Vector2(0.36, 0.36)
 texture = ExtResource("2_tf2uu")
 region_enabled = true
 region_rect = Rect2(1594, 371, 202, 106)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2.5)
-shape = SubResource("RectangleShape2D_tf2uu")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

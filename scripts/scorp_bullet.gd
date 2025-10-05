@@ -21,14 +21,17 @@ static func new_bullet(p_global_position: Vector2, p_velocity: Vector2, p_group:
 			bullet.call_deferred("set_collision_mask_value", 2, false)
 			bullet.call_deferred("set_collision_mask_value", 5, false)
 			bullet.call_deferred("set_collision_mask_value", 6, false)
+			bullet.modulate = Color.WHITE
 		Global.GROUP.FRIEND:
 			bullet.call_deferred("set_collision_mask_value", 2, false)
 			bullet.call_deferred("set_collision_mask_value", 5, false)
 			bullet.call_deferred("set_collision_mask_value", 6, true)
+			bullet.modulate = Color.WHITE
 		Global.GROUP.ENEMY:
 			bullet.call_deferred("set_collision_mask_value", 2, false)
 			bullet.call_deferred("set_collision_mask_value", 5, true)
 			bullet.call_deferred("set_collision_mask_value", 6, false)
+			bullet.modulate = Color("ff4f4f")
 		
 	return bullet
 

@@ -9,6 +9,10 @@ static func new_shield(p_global_position: Vector2, p_group: Global.GROUP) -> Tur
 	var shield: TurtleShield = TURTLE_SHIELD.instantiate()
 	shield.global_position_on_ready = p_global_position
 	shield.group = p_group
+	if p_group == Global.GROUP.ENEMY:
+		shield.modulate = Color("ff4f4f")
+	else:
+		shield.modulate = Color.WHITE
 	return shield
 
 func _ready() -> void:
@@ -16,3 +20,7 @@ func _ready() -> void:
 
 func update_group(p_group: Global.GROUP) -> void:
 	group = p_group
+	if group == Global.GROUP.ENEMY:
+		modulate = Color("ff4f4f")
+	else:
+		modulate = Color.WHITE
