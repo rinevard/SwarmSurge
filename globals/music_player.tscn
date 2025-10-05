@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtj83q2v85r02"]
+
+[ext_resource type="AudioStream" uid="uid://b46bu081k8ywb" path="res://assets/musics/main_master.ogg" id="1_3le6b"]
+[ext_resource type="Script" uid="uid://cigj2dw612lhb" path="res://scripts/globals/music_player.gd" id="1_aey4g"]
+[ext_resource type="AudioStream" uid="uid://dia7xa1cgk70v" path="res://assets/musics/hedgehog.ogg" id="2_j2e5w"]
+[ext_resource type="AudioStream" uid="uid://dxokm8ulsg6hx" path="res://assets/musics/scorpion.ogg" id="3_koeub"]
+[ext_resource type="AudioStream" uid="uid://dh177571slnjq" path="res://assets/musics/turtle.ogg" id="4_t5pe2"]
+
+[node name="MusicPlayer" type="Node"]
+script = ExtResource("1_aey4g")
+
+[node name="MasterPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_3le6b")
+
+[node name="HedgehogPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_j2e5w")
+
+[node name="ScorpionPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_koeub")
+
+[node name="TurtlePlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_t5pe2")

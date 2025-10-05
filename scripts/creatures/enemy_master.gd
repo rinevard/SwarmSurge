@@ -8,7 +8,7 @@ var time_to_last_activation: float = 0.0
 
 const ACTIVATION_INTERVAL: float = 3.0
 const ACTIVATION_STEP: float = 150.0
-const ACTIVATION_BATCH_INTERVAL: float = 0.3
+const ACTIVATION_BATCH_INTERVAL: float = 0.4
 # 保持和玩家的距离在这个距离内
 const DESIRE_DISTANCE_TO_PLAYER_MIN: float = 200.0
 const DESIRE_DISTANCE_TO_PLAYER_MAX: float = 400.0
@@ -58,7 +58,7 @@ func _physics_process(delta: float) -> void:
 
 func _activate_swarm() -> void:
 	_activate_self()
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(ACTIVATION_BATCH_INTERVAL).timeout
 	# 记录当前激活时刻的副兽数组
 	var parts_snapshot: Array[BaseCreature] = swarm_parts.keys()
 	if parts_snapshot.is_empty():

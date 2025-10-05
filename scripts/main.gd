@@ -18,14 +18,17 @@ func _toggle_pause() -> void:
 	pause_menu.visible = Global.game_paused
 	if Global.game_paused:
 		pause_menu.show()
+		MusicPlayer.stop_all()
 	else:
 		pause_menu.hide()
+		MusicPlayer.continue_all()
 
 func _on_pause_menu_pause_clicked() -> void:
 	_toggle_pause()
 
 func _on_pause_menu_reset_game() -> void:
 	Global.game_paused = true
+	MusicPlayer.stop_all()
 	pause_menu.hide()
 	await _transition_fade_in()
 
@@ -34,9 +37,9 @@ func _on_pause_menu_reset_game() -> void:
 	game = GAME.instantiate()
 	Global.reset_game_data(game)
 	call_deferred("add_child", game)
+	Global.game_paused = false
 	await _transition_fade_out()
 
-	Global.game_paused = false
 
 #region 切换场景
 var transition_duration: float = 1.0

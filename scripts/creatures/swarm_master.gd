@@ -8,27 +8,34 @@ var velocity: Vector2 = Vector2.ZERO
 var time_to_last_activation: float = 0.0
 
 const ACTIVATION_INTERVAL: float = 2.0
-const ACTIVATION_STEP: float = 150.0
-const ACTIVATION_BATCH_INTERVAL: float = 0.4
+const ACTIVATION_STEP: float = 100.0
+const ACTIVATION_BATCH_INTERVAL: float = 0.5
 
 func _ready() -> void:
+	MusicPlayer.init_music()
+	MusicPlayer.play_master()
 	update_group(Global.GROUP.FRIEND, self)
 	call_deferred("_init_global")
 
 func _init_global() -> void:
 	Global.player_master = self
 
+var time_record: float = 0.0
 func _physics_process(delta: float) -> void:
+	time_record += delta
 	if Global.game_paused:
 		return
 	tmp_update_label()
 	_update_swarm_parts_and_enemies()
+	_update_music()
 
 	#region 激活
 	time_to_last_activation += delta
-	if time_to_last_activation >= ACTIVATION_INTERVAL:
+	# 用 0.01 修正就能卡点
+	if ACTIVATION_INTERVAL - time_to_last_activation < 0.01:
 		_activate_swarm()
 		time_to_last_activation = 0.0
+		print("time_record: ", time_record)
 	#endregion
 
 	#region 移动
@@ -47,10 +54,38 @@ func _physics_process(delta: float) -> void:
 	position += velocity * delta
 	#endregion
 
+func _update_music() -> void:
+	var has_hedgehog: bool = false
+	var has_scorpion: bool = false
+	var has_turtle: bool = false
+	for part in swarm_parts.keys():
+		if part and is_instance_valid(part) and part is SwarmPart:
+			if part is Hedgehog:
+				has_hedgehog = true
+			elif part is Scorpion:
+				has_scorpion = true
+			elif part is Turtle:
+				has_turtle = true
+			if has_hedgehog and has_scorpion and has_turtle:
+				break
+
+	if has_hedgehog:
+		MusicPlayer.play_hedgehog()
+	else:
+		MusicPlayer.mute_hedgehog()
+	if has_scorpion:
+		MusicPlayer.play_scorpion()
+	else:
+		MusicPlayer.mute_scorpion()
+	if has_turtle:
+		MusicPlayer.play_turtle()
+	else:
+		MusicPlayer.mute_turtle()
+
 func _activate_swarm() -> void:
 	SfxPlayer.play_sfx(SfxPlayer.SFXs.ACTIVATE_SIGNAL, global_position)
 	_activate_self()
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(ACTIVATION_BATCH_INTERVAL).timeout
 	# 记录当前激活时刻的副兽数组
 	var parts_snapshot: Array[BaseCreature] = swarm_parts.keys()
 	if parts_snapshot.is_empty():
