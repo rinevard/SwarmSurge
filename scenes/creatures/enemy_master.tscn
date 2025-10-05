@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://betv6hrnya64x"]
+[gd_scene load_steps=10 format=3 uid="uid://betv6hrnya64x"]
 
 [ext_resource type="PackedScene" uid="uid://b031ffqlibkfg" path="res://scenes/creatures/base_creature.tscn" id="1_s0yiq"]
 [ext_resource type="Script" uid="uid://f4wyb40jr5e1" path="res://scripts/creatures/enemy_master.gd" id="2_y5iur"]
-[ext_resource type="Texture2D" uid="uid://baidxml36re64" path="res://assets/art/creatures.png" id="3_enc81"]
+[ext_resource type="Texture2D" uid="uid://butjew1twah8" path="res://assets/art/final_creatures.png" id="4_lhcut"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_enc81"]
 radius = 100.0
@@ -13,6 +13,68 @@ radius = 480.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_enc81"]
 radius = 36.0
 height = 136.0
+
+[sub_resource type="Animation" id="Animation_enc81"]
+resource_name = "normal"
+length = 0.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Body:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.05, 0.8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Eyes:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -22), Vector2(0, -18)]
+}
+
+[sub_resource type="Animation" id="Animation_lhcut"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Body:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Eyes:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -20)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lhcut"]
+_data = {
+&"RESET": SubResource("Animation_lhcut"),
+&"normal": SubResource("Animation_enc81")
+}
 
 [node name="EnemyMaster" instance=ExtResource("1_s0yiq")]
 script = ExtResource("2_y5iur")
@@ -28,10 +90,21 @@ rotation = 1.57079
 shape = SubResource("CapsuleShape2D_enc81")
 
 [node name="Sprites" type="Node2D" parent="." index="3"]
-modulate = Color(1, 0, 0, 1)
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.5, 0.5)
 
-[node name="Sprite2D" type="Sprite2D" parent="Sprites" index="0"]
-texture = ExtResource("3_enc81")
+[node name="Body" type="Sprite2D" parent="Sprites" index="0"]
+modulate = Color(1, 0.31, 0.31, 1)
+texture = ExtResource("4_lhcut")
 region_enabled = true
-region_rect = Rect2(119, 886, 567, 316)
+region_rect = Rect2(1079, 1162, 293, 194)
+
+[node name="Eyes" type="Sprite2D" parent="Sprites" index="1"]
+position = Vector2(0, -20)
+texture = ExtResource("4_lhcut")
+region_enabled = true
+region_rect = Rect2(100, 1277, 113, 47)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+libraries = {
+&"": SubResource("AnimationLibrary_lhcut")
+}

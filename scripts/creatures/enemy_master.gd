@@ -19,6 +19,7 @@ const SIN_WEIGHT = 1000.0
 func _ready() -> void:
 	update_group(Global.GROUP.ENEMY, self)
 	call_deferred("_init_global")
+	$AnimationPlayer.play("normal")
 
 func _init_global() -> void:
 	Global.enemy_masters.append(self)
