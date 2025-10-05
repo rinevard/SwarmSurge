@@ -101,13 +101,15 @@ func _update_swarm_parts_and_enemies() -> void:
 	for part in swarm_part_keys:
 		if part and is_instance_valid(part) and part.group == group:
 			continue
-		remove_swarm_part(part)
+		if part and is_instance_valid(part):
+			remove_swarm_part(part)
 
 	# 如果有非敌对的, 移除
 	for enemy in enemy_keys:
 		if enemy and is_instance_valid(enemy) and enemy.group == Global.GROUP.ENEMY:
 			continue
-		remove_enemy(enemy)
+		if enemy and is_instance_valid(enemy):
+			remove_enemy(enemy)
 
 func _activate_self() -> void:
 	pass

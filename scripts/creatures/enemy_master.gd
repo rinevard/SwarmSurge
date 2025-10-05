@@ -1,7 +1,6 @@
 extends BaseCreature
 class_name EnemyMaster
 
-var speed: float = 300.0
 var swarm_parts: Dictionary[BaseCreature, bool] = {} # 使用字典避免重复添加
 var neighbor_enemies: Dictionary[BaseCreature, int] = {} # int 表示计数次数, 一个 creature 可能被聚落里多个生物检测到
 var velocity: Vector2 = Vector2.ZERO
@@ -10,6 +9,12 @@ var time_to_last_activation: float = 0.0
 const ACTIVATION_INTERVAL: float = 3.0
 const ACTIVATION_STEP: float = 150.0
 const ACTIVATION_BATCH_INTERVAL: float = 0.3
+# 保持和玩家的距离在这个距离内
+const DESIRE_DISTANCE_TO_PLAYER_MIN: float = 200.0
+const DESIRE_DISTANCE_TO_PLAYER_MAX: float = 400.0
+
+const MAX_SPEED = 250.0
+const SIN_WEIGHT = 1000.0
 
 func _ready() -> void:
 	update_group(Global.GROUP.ENEMY, self)
@@ -27,6 +32,26 @@ func _physics_process(delta: float) -> void:
 	if time_to_last_activation >= ACTIVATION_INTERVAL:
 		_activate_swarm()
 		time_to_last_activation = 0.0
+	#endregion
+
+	#region 移动
+	var player_master: SwarmMaster = Global.player_master
+	if player_master:
+		var to_player: Vector2 = player_master.global_position - global_position
+		if to_player.length() > DESIRE_DISTANCE_TO_PLAYER_MAX:
+			velocity = to_player.normalized() * MAX_SPEED
+		elif to_player.length() < DESIRE_DISTANCE_TO_PLAYER_MIN:
+			velocity = -to_player.normalized() * MAX_SPEED
+		# 如果在最大距离内而在最小距离外, 做无规则运动
+		else:
+			var sin_dir: Vector2 = Vector2(sin(Time.get_ticks_msec() / 1000.0), cos(Time.get_ticks_msec() / 1000.0)).normalized()
+			var acceleration: Vector2 = sin_dir * SIN_WEIGHT
+			velocity += acceleration * delta
+			if velocity.length() > MAX_SPEED:
+				velocity = velocity.normalized() * MAX_SPEED
+
+		position += velocity * delta
+
 	#endregion
 
 func _activate_swarm() -> void:
@@ -85,13 +110,15 @@ func _update_swarm_parts_and_enemies() -> void:
 	for part in swarm_part_keys:
 		if part and is_instance_valid(part) and part.group == group:
 			continue
-		remove_swarm_part(part)
+		if part and is_instance_valid(part):
+			remove_swarm_part(part)
 
 	# 如果有非敌对的, 移除
 	for enemy in enemy_keys:
 		if enemy and is_instance_valid(enemy) and enemy.group == Global.GROUP.FRIEND:
 			continue
-		remove_enemy(enemy)
+		if enemy and is_instance_valid(enemy):
+			remove_enemy(enemy)
 
 func _activate_self() -> void:
 	pass

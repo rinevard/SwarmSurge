@@ -8,10 +8,11 @@ func activate(enemies: Array[BaseCreature]) -> void:
 	var nearest_enemy: BaseCreature = null
 	var nearest_enemy_distance: float = INF
 	for enemy in enemies:
-		var distance: float = global_position.distance_to(enemy.global_position)
-		if distance < nearest_enemy_distance:
-			nearest_enemy = enemy
-			nearest_enemy_distance = distance
+		if enemy and is_instance_valid(enemy):
+			var distance: float = global_position.distance_to(enemy.global_position)
+			if distance < nearest_enemy_distance:
+				nearest_enemy = enemy
+				nearest_enemy_distance = distance
 
 	if nearest_enemy:
 		if Global.bullet_handler:

@@ -35,7 +35,7 @@ func _on_area_entered(area: Area2D) -> void:
 	if area is TurtleShield:
 		if (area.group == Global.GROUP.ENEMY and group == Global.GROUP.FRIEND) \
 			or (area.group == Global.GROUP.FRIEND and group == Global.GROUP.ENEMY):
-			print("scrop bullet hit shield!")
+			call_deferred("queue_free")
 			return
 
 	var creature = area.get_parent()
@@ -43,3 +43,4 @@ func _on_area_entered(area: Area2D) -> void:
 		if (creature.group == Global.GROUP.ENEMY and group == Global.GROUP.FRIEND) \
 			or (creature.group == Global.GROUP.FRIEND and group == Global.GROUP.ENEMY):
 			creature.on_bullet_hit(self)
+			call_deferred("queue_free")

@@ -10,7 +10,7 @@ const MAX_FORCE: float = 800.0
 # TODO: 这些参数应该根据聚落大小动态调整, 当 master 获取了新生物就可以调整
 # 另一个思路是这些移动变量全都由 master 管理, 一个聚落里一个 master 管理本聚落的移动变量 
 const PERCEPTION_RADIUS: float = 300.0 # 把本距离内的生物视作邻居
-const SEPARATION_RADIUS: float = 120.0 # 相邻生物应当尽量保持本距离
+const SEPARATION_RADIUS: float = 120.0 # 相邻生物距离过小时会相互排斥
 
 const WEIGHT_SEPARATION: float = 5.0
 const WEIGHT_KEEP_DISTANCE: float = 3.0
