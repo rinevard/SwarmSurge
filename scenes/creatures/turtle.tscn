@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cml547fqhdb8g"]
+[gd_scene load_steps=10 format=3 uid="uid://cml547fqhdb8g"]
 
 [ext_resource type="PackedScene" uid="uid://cjlv33leiso01" path="res://scenes/creatures/swarm_part.tscn" id="1_vdf1r"]
 [ext_resource type="Script" uid="uid://bsqjp8hoidkc0" path="res://scripts/creatures/turtle.gd" id="2_1y4ad"]
@@ -12,6 +12,116 @@ radius = 480.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_psu7v"]
 radius = 50.0
+
+[sub_resource type="Animation" id="Animation_1y4ad"]
+resource_name = "normal"
+length = 0.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Body:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 0.8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Shell:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 0.8)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/Body:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-7.5, 62.5), Vector2(-7.5, 60)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprites/Eyes:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-7.5, 75), Vector2(-7.5, 65)]
+}
+
+[sub_resource type="Animation" id="Animation_wqdtd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Body:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Shell:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/Body:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-7.5, 62.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprites/Eyes:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-7.5, 75)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wqdtd"]
+_data = {
+&"RESET": SubResource("Animation_wqdtd"),
+&"normal": SubResource("Animation_1y4ad")
+}
 
 [node name="Turtle" instance=ExtResource("1_vdf1r")]
 script = ExtResource("2_1y4ad")
@@ -29,7 +139,7 @@ shape = SubResource("CircleShape2D_psu7v")
 scale = Vector2(0.4, 0.4)
 
 [node name="Body" type="Sprite2D" parent="Sprites" index="0"]
-position = Vector2(-7.5, 67.5)
+position = Vector2(-7.5, 62.5)
 texture = ExtResource("4_wqdtd")
 region_enabled = true
 region_rect = Rect2(1696, 1631, 210, 129)
@@ -47,3 +157,8 @@ region_rect = Rect2(100, 1277, 113, 47)
 
 [node name="ShieldPosMarker" type="Marker2D" parent="." index="5"]
 position = Vector2(0, -150)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="7"]
+libraries = {
+&"": SubResource("AnimationLibrary_wqdtd")
+}

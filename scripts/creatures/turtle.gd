@@ -13,6 +13,9 @@ const SCALE_MAX: float = 2.0  # 最大缩放倍数
 
 @onready var shield_pos_marker: Marker2D = $ShieldPosMarker
 
+func _ready() -> void:
+	$AnimationPlayer.play("normal")
+
 ## override, 转动龟壳使其在 master 到自己的连线的射线上
 func _physics_process(delta: float) -> void:
 	if Global.game_paused:
