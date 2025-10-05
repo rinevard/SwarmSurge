@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cjlv33leiso01" path="res://scenes/creatures/swarm_part.tscn" id="1_vdf1r"]
 [ext_resource type="Script" uid="uid://bsqjp8hoidkc0" path="res://scripts/creatures/turtle.gd" id="2_1y4ad"]
-[ext_resource type="Texture2D" uid="uid://baidxml36re64" path="res://assets/art/creatures.png" id="2_wdcxx"]
+[ext_resource type="Texture2D" uid="uid://butjew1twah8" path="res://assets/art/final_creatures.png" id="4_wqdtd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1y4ad"]
 radius = 120.0
@@ -26,12 +26,24 @@ shape = SubResource("CircleShape2D_wqdtd")
 shape = SubResource("CircleShape2D_psu7v")
 
 [node name="Sprites" type="Node2D" parent="." index="3"]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.4, 0.4)
 
-[node name="Sprite2D" type="Sprite2D" parent="Sprites" index="0"]
-texture = ExtResource("2_wdcxx")
+[node name="Body" type="Sprite2D" parent="Sprites" index="0"]
+position = Vector2(-7.5, 67.5)
+texture = ExtResource("4_wqdtd")
 region_enabled = true
-region_rect = Rect2(166, 74, 455, 404)
+region_rect = Rect2(1696, 1631, 210, 129)
+
+[node name="Shell" type="Sprite2D" parent="Sprites" index="1"]
+texture = ExtResource("4_wqdtd")
+region_enabled = true
+region_rect = Rect2(1649, 1158, 279, 232)
+
+[node name="Eyes" type="Sprite2D" parent="Sprites" index="2"]
+position = Vector2(-7.5, 75)
+texture = ExtResource("4_wqdtd")
+region_enabled = true
+region_rect = Rect2(100, 1277, 113, 47)
 
 [node name="ShieldPosMarker" type="Marker2D" parent="." index="5"]
 position = Vector2(0, -150)
