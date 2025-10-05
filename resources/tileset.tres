@@ -1,0 +1,35 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://cmjtspbuu7wdl"]
+
+[ext_resource type="Texture2D" uid="uid://0s2xl4a6va2v" path="res://assets/art/bg_deco.png" id="1_qp2yk"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kvpfn"]
+texture = ExtResource("1_qp2yk")
+texture_region_size = Vector2i(64, 64)
+2:3/size_in_atlas = Vector2i(5, 5)
+2:3/0 = 0
+0:12/size_in_atlas = Vector2i(7, 8)
+0:12/0 = 0
+0:24/size_in_atlas = Vector2i(7, 7)
+0:24/0 = 0
+13:25/size_in_atlas = Vector2i(7, 6)
+13:25/0 = 0
+14:12/size_in_atlas = Vector2i(8, 10)
+14:12/0 = 0
+15:3/size_in_atlas = Vector2i(7, 6)
+15:3/0 = 0
+27:15/size_in_atlas = Vector2i(7, 5)
+27:15/0 = 0
+28:5/size_in_atlas = Vector2i(5, 5)
+28:5/0 = 0
+26:25/size_in_atlas = Vector2i(8, 6)
+26:25/0 = 0
+38:22/size_in_atlas = Vector2i(8, 9)
+38:22/0 = 0
+40:15/size_in_atlas = Vector2i(5, 4)
+40:15/0 = 0
+38:0/size_in_atlas = Vector2i(7, 10)
+38:0/0 = 0
+
+[resource]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_kvpfn")

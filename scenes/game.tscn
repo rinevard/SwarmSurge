@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://c1r25yahmaosa"]
+[gd_scene load_steps=11 format=4 uid="uid://c1r25yahmaosa"]
 
 [ext_resource type="Script" uid="uid://q3i5mc3m878" path="res://scripts/game.gd" id="1_iywne"]
 [ext_resource type="PackedScene" uid="uid://cxgtvurlejghu" path="res://scenes/creatures/swarm_master.tscn" id="1_yqjtg"]
@@ -9,39 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://betv6hrnya64x" path="res://scenes/creatures/enemy_master.tscn" id="5_p57ef"]
 [ext_resource type="PackedScene" uid="uid://c3jmk4m075u6k" path="res://scenes/creatures/hedgehog.tscn" id="6_u5sy4"]
 [ext_resource type="Script" uid="uid://4vpilwtnnc3m" path="res://scripts/enemy_handler.gd" id="7_gee14"]
-[ext_resource type="Texture2D" uid="uid://0s2xl4a6va2v" path="res://assets/art/bg_deco.png" id="10_vtaks"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kvpfn"]
-texture = ExtResource("10_vtaks")
-texture_region_size = Vector2i(64, 64)
-2:3/size_in_atlas = Vector2i(5, 5)
-2:3/0 = 0
-0:12/size_in_atlas = Vector2i(7, 8)
-0:12/0 = 0
-0:24/size_in_atlas = Vector2i(7, 7)
-0:24/0 = 0
-13:25/size_in_atlas = Vector2i(7, 6)
-13:25/0 = 0
-14:12/size_in_atlas = Vector2i(8, 10)
-14:12/0 = 0
-15:3/size_in_atlas = Vector2i(7, 6)
-15:3/0 = 0
-27:15/size_in_atlas = Vector2i(7, 5)
-27:15/0 = 0
-28:5/size_in_atlas = Vector2i(5, 5)
-28:5/0 = 0
-26:25/size_in_atlas = Vector2i(8, 6)
-26:25/0 = 0
-38:22/size_in_atlas = Vector2i(8, 9)
-38:22/0 = 0
-40:15/size_in_atlas = Vector2i(5, 4)
-40:15/0 = 0
-38:0/size_in_atlas = Vector2i(7, 10)
-38:0/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_0tnpc"]
-tile_size = Vector2i(64, 64)
-sources/0 = SubResource("TileSetAtlasSource_kvpfn")
+[ext_resource type="TileSet" uid="uid://cmjtspbuu7wdl" path="res://resources/tileset.tres" id="10_vtaks"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_iywne")
@@ -103,6 +71,11 @@ offset_bottom = 3914.0
 color = Color(0.145098, 0.211765, 0.341176, 1)
 metadata/_edit_lock_ = true
 
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(0.5, 0.5)
+tile_map_data = PackedByteArray("AADs/yYAAAANABkAAADN/zYAAAAPAAMAAAD9/0UAAAAPAAMAAAAOADwAAAAPAAMAAAA6AEYAAAAPAAMAAACDADUAAAAAABgAAACBAO7/AAANABkAAABjACAAAAAAABgAAABgAO7/AAAaABkAAABgAO//AAAaABkAAAAsAB8AAAAAABgAAAATABoAAAAPAAMAAAAsAAIAAAAaABkAAAD0//X/AAANABkAAAAXAOT/AAAPAAMAAADF//v/AAAPAAMAAAC9/+b/AAAPAAMAAADY/wsAAAAaABkAAABfAD8AAAAaABkAAADg/+n/AAANABkAAACTANr/AAACAAMAAACSAFcAAAACAAMAAAC3/1kAAAACAAMAAAC3/9r/AAACAAMAAAA=")
+tile_set = ExtResource("10_vtaks")
+
 [node name="Creatures" type="Node2D" parent="."]
 
 [node name="Scorpion" parent="Creatures" instance=ExtResource("2_lnu2h")]
@@ -118,6 +91,7 @@ position = Vector2(1451, 688)
 position = Vector2(1509, 641)
 
 [node name="SwarmMaster" parent="Creatures" instance=ExtResource("1_yqjtg")]
+z_index = 0
 position = Vector2(140, 689)
 
 [node name="Hedgehog" parent="Creatures" instance=ExtResource("6_u5sy4")]
@@ -134,5 +108,5 @@ metadata/_edit_lock_ = true
 [node name="BackgroundDecorations" type="TileMapLayer" parent="."]
 position = Vector2(374, 203)
 scale = Vector2(0.5, 0.5)
-tile_map_data = PackedByteArray("AAD5/zMAAAAEAAAAAAAjACcAAAAEAAAAAADs/xUAAAAEAAAAAAAzAP3/AAAEAAAAAAAzAPz/AAAEAAAAAAA8ABsAAAAEAAAAAADo//n/AAAEAAAAAAAZACwAAAAOAAAAAAD9/yEAAAAOAAAAAAAiAPX/AAAOAAAAAAA1ACUAAAAOAAAAAADz/wYAAAAOAAAAAADq/y0AAAAAAAwAAAAEACYAAAAOAAwAAAARADYAAAAAAAwAAAAsADAAAAAmAAAAAAA+ABgAAAAmAAAAAADe/wsAAAAmABYAAADQ/yEAAAAOAAwAAADX/zwAAAAmAAAAAAC4/zkAAAAAAAwAAADA/wgAAAAOAAwAAADA/+T/AAAAAAwAAADm/9//AAAmABYAAAAeAO7/AAAmABYAAAAEAOj/AAAmAAAAAABDAOf/AAAmABYAAABcAPr/AAAOAAwAAAA8AAAAAAAmABYAAABqAOT/AAAAAAwAAAB2AAcAAAAmAAAAAABXAAwAAAAmABYAAABrACAAAAAmABYAAABbAD0AAAAOAAwAAABLAC4AAAAOAAwAAAA/AEgAAAAOAAwAAAB1AEAAAAAmAAAAAADz/0gAAAAAAAwAAADO//P/AAAmABYAAAC1/x4AAAAOAAwAAAAdAEoAAAAAAAwAAAApANz/AAAmAAAAAADe/0oAAAAaABkAAAD5/zkAAAAAABgAAAB+ACgAAAANABkAAABnAA0AAAAaABkAAABMACAAAAAaABkAAAAVACAAAAAAABgAAAArAPX/AAAPAAMAAADa//v/AAANABkAAADD/zYAAAAPAAMAAACz//f/AAAPAAMAAABSAEcAAAAPAAMAAADl/xwAAAAPAAMAAABSAOD/AAAaABkAAAD4/+H/AAAPAAMAAABJAPn/AAAAABgAAAAcABYAAAAaABkAAAAHABYAAAAaABkAAAAZAAAAAAAPAAMAAAB6AO//AAAAABgAAADO/9z/AAAPAAMAAAAMAPj/AAAmABYAAACs/1IAAAACAAMAAACHAFMAAAACAAMAAACIANT/AAACAAMAAACr/9X/AAACAAMAAAA=")
-tile_set = SubResource("TileSet_0tnpc")
+tile_map_data = PackedByteArray("AAC1/x4AAAAOAAwAAAC4/zkAAAAAAAwAAADA/+T/AAAAAAwAAADA/wgAAAAOAAwAAADO//P/AAAmABYAAADQ/yEAAAAOAAwAAADX/zwAAAAmAAAAAADe/wsAAAAmABYAAADm/9//AAAmABYAAADo//n/AAAEAAAAAADq/y0AAAAAAAwAAADs/xUAAAAEAAAAAADz/wYAAAAOAAAAAADz/0gAAAAAAAwAAAD9/yEAAAAOAAAAAAAEAOj/AAAmAAAAAAAEACYAAAAOAAwAAAAMAPj/AAAmABYAAAARADYAAAAAAAwAAAAZACwAAAAOAAAAAAAdAEoAAAAAAAwAAAAeAO7/AAAmABYAAAAiAPX/AAAOAAAAAAAjACcAAAAEAAAAAAApANz/AAAmAAAAAAAsADAAAAAmAAAAAAAzAPz/AAAEAAAAAAAzAP3/AAAEAAAAAAA1ACUAAAAOAAAAAAA8AAAAAAAmABYAAAA8ABsAAAAEAAAAAAA+ABgAAAAmAAAAAAA/AEgAAAAOAAwAAABDAOf/AAAmABYAAABLAC4AAAAOAAwAAABXAAwAAAAmABYAAABbAD0AAAAOAAwAAABcAPr/AAAOAAwAAABqAOT/AAAAAAwAAABrACAAAAAmABYAAAB1AEAAAAAmAAAAAAB2AAcAAAAmAAAAAAA=")
+tile_set = ExtResource("10_vtaks")
