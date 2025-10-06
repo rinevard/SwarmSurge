@@ -13,7 +13,8 @@ config_version=5
 config/name="SwarmSurge"
 run/main_scene="uid://yel15k7lcms3"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://dlxfhs1vncx8j"
+config/windows_native_icon="res://assets/art/icon_and_cover/icon.ico"
 
 [autoload]
 
@@ -25,6 +26,7 @@ MusicPlayer="*res://globals/music_player.tscn"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [input]
